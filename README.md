@@ -58,22 +58,26 @@ This package requires:
 
 ## Installation
 
-### Manual Installation
-[Install the anaconda package](https://docs.anaconda.com/anaconda/install/). Then, 
+### Conda environment
 ```
+[Install the anaconda package](https://docs.anaconda.com/anaconda/install/). Then, 
 conda env create --name CASTING
 conda activate CASTING
-git clone https://github.com/sbanik2/CASTING.git
-pip install -r requirements.txt
-python setup.py install
 ```
 
-### Installation with pypi
+### Install from GitHub
 
 ```
-pip install CASTING
+python -m pip install git+https://github.com/ANL-NST/CASTING.git
+```
+
+To update or reinstall,
 
 ```
+python -m pip install --force-reinstall --no-deps git+https://github.com/ANL-NST/CASTING.git
+```
+
+
 ***The package requires python lammps binding to run. First, lammps package needs to be downloaded from [LAMMPS download](https://www.lammps.org/download.html) and compiled. The instructions on python integration can be found here [LAMMPS-Python](https://docs.lammps.org/Python_install.html).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

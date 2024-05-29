@@ -1,24 +1,29 @@
 [build-system]
-requires = ["setuptools>=65.0",
-  "oldest-supported-numpy"]
+requires = [
+    "setuptools>=65.0",
+    "oldest-supported-numpy"
+]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [project]
 name = "CASTING"
 version = "0.1.4"
 authors = [
-  { name="Suvo Banik", email="sbanik2@uic.edu" },
+    { name="Suvo Banik", email="sbanik2@uic.edu" },
+    { name="Henry Chan", email="hchan@anl.gov" },
 ]
-dependencies = [    "numpy==1.25.2",
-                    "scipy==1.11.2",
-                    "pandas==2.1.3",
-                    "ase==3.22.1",
-                    "mendeleev==0.13.1",
-                    "networkx==2.8.4",
-                    "tqdm==4.64.1",
-                    "pymatgen==2023.11.12"
-                    
-
+dependencies = [
+    "numpy==1.25.2",
+    "scipy==1.11.2",
+    "pandas==2.1.3",
+    "ase==3.22.1",
+    "mendeleev==0.13.1",
+    "networkx==2.8.4",
+    "tqdm==4.64.1",
+    "pymatgen==2023.11.12"
 ]
 description = "A continuous action space tree search for inverse design (CASTING)"
 readme = "README.md"
