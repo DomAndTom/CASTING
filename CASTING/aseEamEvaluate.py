@@ -19,7 +19,9 @@ def structure_to_cell(structure):
 def cell_to_structure(cell):
     (lattice, positions, numbers) = cell
     return Structure(
-        Lattice(lattice), [element(int(num)).symbol for num in numbers], positions
+        Lattice(lattice),
+        [element(int(num)).symbol for num in numbers],
+        positions,
     )
 
 
@@ -35,12 +37,10 @@ class AseEamEvaluator:
         constrains,
         par_file,
     ):
-
         self.constrains = constrains
         self.par_file = par_file
 
     def evaluate(self, structData):
-
         if not check_constrains(structData, self.constrains, verbose=False):
             return structData, 1e300
 

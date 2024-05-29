@@ -22,7 +22,9 @@ def random_sub_cluster_sample(A, natoms):
     sampled_nodes = [choice(indexes)]
     for i in range(natoms - 1):
         connections = np.where(A[sampled_nodes[i], :] != 0)[0]
-        connections_wth_sam = [n for n in connections if n not in sampled_nodes]
+        connections_wth_sam = [
+            n for n in connections if n not in sampled_nodes
+        ]
         shuffle(connections_wth_sam)
         next_node = connections_wth_sam[0]
         sampled_nodes.append(next_node)
@@ -31,7 +33,6 @@ def random_sub_cluster_sample(A, natoms):
 
 
 def createRandomData(constrains, multiplier=10):
-
     natoms = constrains["atoms"]
 
     # --------Species list creation -----------
@@ -88,7 +89,6 @@ def get_coords(parameters):
 
 
 def check_constrains(structData, constrains, verbose=False):
-
     parameters = structData["parameters"].copy()
     species = structData["species"].copy()
     specieCount = dict(Counter(species))
@@ -131,11 +131,12 @@ def check_constrains(structData, constrains, verbose=False):
         indices[key] = np.where(np.array(species) == key)[0].tolist()
 
     for c in product(list(indices.keys()), repeat=2):
-
         index1, index2 = indices[c[0]], indices[c[1]]
         d_sub = D[index1, :][:, index2]
 
-        if (d_sub < constrains["r_min"].loc[c[0], c[1]]).any():  # overlapping test
+        if (
+            d_sub < constrains["r_min"].loc[c[0], c[1]]
+        ).any():  # overlapping test
             if verbose:
                 print("overlapping atoms.")
             return False
@@ -163,7 +164,6 @@ def check_constrains(structData, constrains, verbose=False):
 
 
 def parm2struc(structData, constrains):
-
     parameters = structData["parameters"].copy()
     species = structData["species"].copy()
     pos = get_coords(parameters)
@@ -176,8 +176,9 @@ def parm2struc(structData, constrains):
 # ----------------------------------------
 
 
-def struc2param(struct, energy, constrains, CheckFrConstrains=False, writefile=None):
-
+def struc2param(
+    struct, energy, constrains, CheckFrConstrains=False, writefile=None
+):
     lattice = constrains["lattice"]
     pos = np.array([list(site.frac_coords) for site in struct.sites]).flatten()
 
@@ -200,7 +201,6 @@ def struc2param(struct, energy, constrains, CheckFrConstrains=False, writefile=N
             return StructData, 1e300
 
     if writefile is not None:
-
         dataString = (
             " ".join(map(str, latt + pos.tolist()))
             + "|"

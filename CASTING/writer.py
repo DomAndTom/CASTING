@@ -23,7 +23,6 @@ class StructureWriter(object):
         objfile="energy.dat",
         file_format="poscar",
     ):
-
         """
         :dumpfile: full path of the file, where structures are written by MCTS.
         :outpath: full path of the directory where the structures are to be extracted.
@@ -72,7 +71,6 @@ class StructureWriter(object):
             structurelist.sort(key=lambda x: x[0])
 
         for i, val in tqdm(enumerate(structurelist[:num_to_write])):
-
             parameters = val[1]
             species = val[2]
             lattice, coords = self.gel_latt_coords(parameters)

@@ -26,12 +26,13 @@ class perturbate(object):
         return depthscale
 
     def perturb(self, structData, depth, a, maxdepth):
-
         x = structData["parameters"].copy()
         species = structData["species"].copy()
         u = np.random.normal(0.0, 1.0, len(x))
         delta = (
-            (u / np.linalg.norm(u)) * self.max_mutation * self.scale(depth, a, maxdepth)
+            (u / np.linalg.norm(u))
+            * self.max_mutation
+            * self.scale(depth, a, maxdepth)
         )
         x += delta
         x[x > 1] = 1

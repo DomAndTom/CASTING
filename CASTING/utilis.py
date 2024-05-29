@@ -19,7 +19,6 @@ def r_datafame(distance_dict):
 
     for i, sp1 in enumerate(species):
         for j, sp2 in enumerate(species):
-
             try:
                 data[i, j] = distance_dict[sp1 + "-" + sp2]
             except:
@@ -37,7 +36,6 @@ def get_lattice(box_dim):
 
 
 def get_factors(n, m):
-
     factors = []
     factor = int(
         n ** (1.0 / m) + 0.1
@@ -52,7 +50,6 @@ def get_factors(n, m):
 
 
 def DistanceMatrix(frac_coordinates, M):
-
     a, b, c = (
         frac_coordinates[:, 0],
         frac_coordinates[:, 1],

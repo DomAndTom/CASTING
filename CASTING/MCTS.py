@@ -21,13 +21,15 @@ def playouts(
     maxdepth,
     nplayouts=10,
 ):
-
     nodeID = idx
 
     for i in range(nplayouts):
         idx += 1
         playdata = perturbate(
-            parameterlist[nodeID], depth=depthlist[nodeID], a=a, maxdepth=maxdepth
+            parameterlist[nodeID],
+            depth=depthlist[nodeID],
+            a=a,
+            maxdepth=maxdepth,
         )
         playdata_relaxed, playscore = evaluate(playdata)
         #        print("Node: {}, Playout: {} Score: {}".format(nodeID,i+1,playscore))
@@ -55,7 +57,6 @@ def expansion_simulation(
     maxdepth,
     nplayouts=10,
 ):
-
     playindexes = playoutdata[parentID]
     playscores = [Scorelist[i] for i in playindexes]
     bestplayindex = playindexes[playscores.index(min(playscores))]
@@ -74,7 +75,9 @@ def expansion_simulation(
     depth = depthlist[parentID] + 1
     depthlist[idx] = depth
     playoutdata[idx] = []
-    data = perturbate(parameterlist[bestplayindex], depth=depth, a=a, maxdepth=maxdepth)
+    data = perturbate(
+        parameterlist[bestplayindex], depth=depth, a=a, maxdepth=maxdepth
+    )
     data_relaxed, score = evaluate(data)
     Scorelist.append(score)
     parameterlist.append(data)
@@ -170,7 +173,6 @@ def MCTS(
     a=3,
     selected_node=0,
 ):
-
     if selected_node == 0:
         visits = {0: 1}
         childlist = {0: []}
@@ -200,7 +202,6 @@ def MCTS(
     # =======simulation and expansion==================
 
     for _ in range(niterations):
-
         for _ in range(nexpand):
             (
                 visits,

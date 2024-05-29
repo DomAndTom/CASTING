@@ -34,18 +34,18 @@ class LammpsEvaluator(object):
         pair_style,
         pair_coeff,
     ):
-
         self.constrains = constrains
         self.pair_style = pair_style
         self.pair_coeff = pair_coeff
 
     def evaluate(self, structData):
-
         if not check_constrains(structData, self.constrains, verbose=False):
             return structData, 1e300
 
         struct = parm2struc(structData, self.constrains)
-        LammpsData.from_structure(struct, atom_style="atomic").write_file("in.data")
+        LammpsData.from_structure(struct, atom_style="atomic").write_file(
+            "in.data"
+        )
 
         lmp.command("clear")
         lmp.command("dimension 3")
@@ -83,7 +83,9 @@ class LammpsEvaluator(object):
 
         energy = lmp.extract_variable("potential", None, 0)
 
-        minstruct = LammpsData.from_file("min.geo", atom_style="atomic").structure
+        minstruct = LammpsData.from_file(
+            "min.geo", atom_style="atomic"
+        ).structure
 
         minData, mineng = struc2param(
             minstruct,
