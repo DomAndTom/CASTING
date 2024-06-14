@@ -22,8 +22,8 @@ def run(conf: dict):
         raise SystemExit
 
 
-def main(filepath: str = 'inputs.json'):
-    run(load_inputs(filepath))
+def main(inputsfile: str):
+    run(load_inputs(inputsfile))
 
 
 if __name__ == '__main__':
