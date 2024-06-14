@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Files</title>
+  </head>
+  <body>
+    <h1>Job ID: {{jobID}}</h1>
+    <ul>
+      {% for file in files %}
+      <li><a href="{{jobID}}/{{file}}">{{file}}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
