@@ -1,0 +1,66 @@
+{
+  "job_ID": "123456",
+  "job_title": "Job Nickname",
+  "job_type": "structure_search",
+  "simulator": "lammps",
+  "file": {
+    "lmpdata": "file:///path/to/filename.data",
+    "poscar": "file:///path/to/filename.poscar",
+    "incar": "file:///path/to/filename.incar"
+  },
+  "lammps": {
+    "pair_style": "pair_style eam",
+    "pair_coeff": "pair_coeff * * Au.eam"
+  },
+  "target_properties": [
+    "energy_min",
+    "density_min",
+    "elastic"
+  ],
+  "lattice": {
+    "dimensionality": "1D",
+    "min_a": 30,
+    "max_a": 30,
+    "pad_a": 10,
+    "min_b": 1,
+    "max_b": 30,
+    "pad_b": 10,
+    "min_c": 1,
+    "max_c": 30,
+    "pad_c": 0,
+    "min_alpha": 90,
+    "max_alpha": 90,
+    "min_beta": 90,
+    "max_beta": 90,
+    "min_gamma": 90,
+    "max_gamma": 90
+  },
+  "constraint": {
+    "composition": {
+      "Au": 1.0
+    },
+    "min_atom_pair_distance": 2,
+    "max_atom_pair_distance": 4,
+    "min_num_atoms": 1,
+    "max_num_atoms": 30,
+    "min_volume": 1,
+    "max_volume": 30
+  },
+  "perturbation": {
+    "prob_add_atom": 0.125,
+    "prob_del_atom": 0.125,
+    "prob_mutate_atom": 0.125,
+    "prob_mutate_lattice_length": 0.125,
+    "prob_mutate_lattice_ang": 0.125,
+    "prob_slicing": 0.125,
+    "prob_merging": 0.125,
+    "prob_crossover": 0.125
+  },
+  "optimizer": {
+    "name": "MCTS",
+    "num_iteration": 2000,
+    "num_head_expansions": 10,
+    "num_play_expansions": 10,
+    "exploration_const": 60
+  }
+}

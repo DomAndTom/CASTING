@@ -29,10 +29,8 @@ def r_datafame(distance_dict):
     return df
 
 
-def get_lattice(box_dim):
-    return Lattice.from_parameters(
-        a=box_dim, b=box_dim, c=box_dim, alpha=90, beta=90, gamma=90
-    )
+def get_lattice(**kwargs):
+    return Lattice.from_parameters(**kwargs)
 
 
 def get_factors(n, m):

@@ -14,7 +14,7 @@ from ase.build import bulk, make_supercell
 from pymatgen.core import Structure
 from scipy.spatial.distance import pdist, squareform
 
-from CASTING.utilis import DistanceMatrix, get_factors
+from CASTING.utilis import DistanceMatrix, get_factors, get_lattice
 
 
 def random_sub_cluster_sample(A, natoms):
@@ -32,32 +32,30 @@ def random_sub_cluster_sample(A, natoms):
     return sampled_nodes
 
 
-def createRandomData(constrains, multiplier=10):
-    natoms = constrains["atoms"]
+def createRandomData(lattice, constrains, multiplier=10):
+    L = lattice
+    C = constrains
+
+    natoms = np.random.randint(C["min_num_atoms"], C["max_num_atoms"])
 
     # --------Species list creation -----------
 
-    species = []
-    for key in constrains["composition"].keys():
-        nkey = int(
-            (
-                constrains["composition"][key]
-                / sum(list(constrains["composition"].values()))
-            )
-            * natoms
-        )
-        for _ in range(nkey):
-            species.append(key)
+    norm = sum(list(C["composition"].values()))
+
+    species = [
+        element
+        for k, v in C["composition"].items()
+        for element in [k] * int(natoms * v / norm)
+    ]
 
     shuffle(species)
 
     # ----------------Bulk FCC with natoms X multiplier atoms and select cluster with random walk -----------
 
-    maxmin = constrains["r_min"].values.max()
-    minmax = constrains["r_max"].values.min()
-    r = (
-        maxmin + random() * abs(minmax - maxmin)
-    ) * 0.5  # radius of an indivisual atom from fcc packing
+    r0 = C["min_atom_pair_distance"]
+    r1 = C["max_atom_pair_distance"]
+    # radius of an indivisual atom from fcc packing
+    r = (r1 + random() * abs(r0 - r1)) * 0.5
     a = 2 * 2**0.5 * r
     a1 = bulk("Cu", "fcc", a=a)  # 'Cu' dummy species
     factors = get_factors(natoms * multiplier, 3)
@@ -72,7 +70,21 @@ def createRandomData(constrains, multiplier=10):
             break
         except:
             continue
-    M = constrains["lattice"].matrix  # lattice matrix
+
+    M = get_lattice(
+        **{
+            **{
+                k: np.random.uniform(L[f'min_{k}'], L[f'max_{k}'])
+                + 2.0 * L[f'pad_{k}']
+                for k in ['a', 'b', 'c']
+            },
+            **{
+                k: np.random.uniform(L[f'min_{k}'], L[f'max_{k}'])
+                for k in ['alpha', 'beta', 'gamma']
+            },
+        }
+    ).matrix  # lattice matrix
+
     cluster_pos = pos[sampled_nodes, :]
     box_centre = np.sum(M, axis=0) * 0.5
     cluster_centre = np.mean(cluster_pos, axis=0)
