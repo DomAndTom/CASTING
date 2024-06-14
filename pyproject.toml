@@ -23,7 +23,8 @@ dependencies = [
     "mendeleev==0.13.1",
     "networkx==2.8.4",
     "tqdm==4.64.1",
-    "pymatgen==2023.11.12"
+    "pymatgen==2023.11.12",
+    "fastapi",
 ]
 description = "A continuous action space tree search for inverse design (CASTING)"
 readme = "README.md"
