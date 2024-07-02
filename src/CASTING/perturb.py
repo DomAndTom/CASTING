@@ -3,7 +3,6 @@ Created on 2022-12-13 20:36:01.409428
 @author: suvobanik
 """
 
-
 from random import random
 
 import numpy as np
@@ -17,11 +16,8 @@ class perturbate(object):
         self.max_mutation = max_mutation
 
     def scale(self, depth, a, maxdepth):
-        if random() > 0.2:
-            pass
-        else:
+        if random() <= 0.2:
             a = 0
-
         depthscale = np.exp(-a * (depth / maxdepth) ** 2)
         return depthscale
 
@@ -38,4 +34,9 @@ class perturbate(object):
         x[x > 1] = 1
         x[x < 0] = 0
 
-        return {"parameters": x, "species": species}
+        return {
+            "lattice": structData['lattice'],
+            "parameters": x,
+            "species": species,
+            "constraint": structData['constraint'],
+        }

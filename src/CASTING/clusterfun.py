@@ -3,7 +3,6 @@ Created on 2022-12-13 20:36:01.409428
 @author: suvobanik
 """
 
-
 from collections import Counter
 from itertools import product
 from random import choice, random, shuffle
@@ -15,6 +14,8 @@ from pymatgen.core import Structure
 from scipy.spatial.distance import pdist, squareform
 
 from CASTING.utilis import DistanceMatrix, get_factors, get_lattice
+
+from . import logger
 
 
 def random_sub_cluster_sample(A, natoms):
@@ -71,7 +72,7 @@ def createRandomData(lattice, constrains, multiplier=10):
         except:
             continue
 
-    M = get_lattice(
+    latt = get_lattice(
         **{
             **{
                 k: np.random.uniform(L[f'min_{k}'], L[f'max_{k}'])
@@ -83,7 +84,9 @@ def createRandomData(lattice, constrains, multiplier=10):
                 for k in ['alpha', 'beta', 'gamma']
             },
         }
-    ).matrix  # lattice matrix
+    )
+
+    M = latt.matrix  # lattice matrix
 
     cluster_pos = pos[sampled_nodes, :]
     box_centre = np.sum(M, axis=0) * 0.5
@@ -91,7 +94,12 @@ def createRandomData(lattice, constrains, multiplier=10):
     cluster_pos = box_centre + cluster_centre - cluster_pos
     cluster_pos_fractional = np.matmul(cluster_pos, np.linalg.inv(M))
 
-    return {"parameters": cluster_pos_fractional.flatten(), "species": species}
+    return {
+        "lattice": latt,
+        "parameters": cluster_pos_fractional.flatten(),
+        "species": species,
+        "constraint": C,
+    }
 
 
 def get_coords(parameters):
@@ -100,18 +108,23 @@ def get_coords(parameters):
     return coords
 
 
-def check_constrains(structData, constrains, verbose=False):
+def check_constrains(structData):
     parameters = structData["parameters"].copy()
     species = structData["species"].copy()
     specieCount = dict(Counter(species))
     coords = get_coords(parameters)
 
+    constrains = structData['constraint']
+
     # ======= number of atom constrains==============
 
-    natoms = constrains["atoms"]
-    if natoms != coords.shape[0]:
-        if verbose:
-            print("# of atoms inconsistent.")
+    natoms = coords.shape[0]
+    if (
+        not constrains['min_num_atoms']
+        <= natoms
+        <= constrains['max_num_atoms']
+    ):
+        logger.debug("# of atoms inconsistent.")
         return False
 
     # ============ composition check=================
@@ -119,19 +132,17 @@ def check_constrains(structData, constrains, verbose=False):
     composition = constrains["composition"]
 
     if list(composition.keys()).sort() != list(specieCount.keys()).sort():
-        if verbose:
-            print("composition inconsistent.")
+        logger.debug("composition inconsistent.")
         return False
 
     for key in composition.keys():
         if specieCount[key] % composition[key] != 0:
-            if verbose:
-                print("composition inconsistent.")
+            logger.debug("composition inconsistent.")
             return False
 
     # ======================================
 
-    latt = constrains["lattice"]
+    latt = structData["lattice"]
     M = np.array((latt.matrix))
     D = DistanceMatrix(coords, M)
     np.fill_diagonal(D, 1e300)
@@ -146,15 +157,14 @@ def check_constrains(structData, constrains, verbose=False):
         index1, index2 = indices[c[0]], indices[c[1]]
         d_sub = D[index1, :][:, index2]
 
-        if (
-            d_sub < constrains["r_min"].loc[c[0], c[1]]
-        ).any():  # overlapping test
-            if verbose:
-                print("overlapping atoms.")
+        rmin = constrains["min_atom_pair_distance"]
+        rmax = constrains["max_atom_pair_distance"]
+        if np.sum(d_sub < rmin):  # overlapping test
+            logger.debug("overlapping atoms.")
             return False
 
-        d_sub[d_sub <= constrains["r_max"].loc[c[0], c[1]]] = 1
-        d_sub[d_sub > constrains["r_max"].loc[c[0], c[1]]] = 0
+        d_sub[d_sub <= rmax] = 1
+        d_sub[d_sub > rmax] = 0
 
         C = A[index1, :]
         C[:, index2] = d_sub
@@ -165,8 +175,7 @@ def check_constrains(structData, constrains, verbose=False):
     # -------fragmentation test----------------
 
     if len(list(nx.connected_components(G))) > 1:
-        if verbose:
-            print("Fragmented cluster.")
+        logger.debug("Fragmented cluster.")
         return False
 
     return True
@@ -175,14 +184,14 @@ def check_constrains(structData, constrains, verbose=False):
 # ---------------------------------------
 
 
-def parm2struc(structData, constrains):
+def parm2struc(structData):
     parameters = structData["parameters"].copy()
-    species = structData["species"].copy()
-    pos = get_coords(parameters)
-    lattice = constrains["lattice"]
-    struct = Structure(lattice, species, pos, to_unit_cell=True)
-
-    return struct
+    return Structure(
+        structData["lattice"],
+        structData["species"].copy(),
+        get_coords(parameters),
+        to_unit_cell=True,
+    )
 
 
 # ----------------------------------------
@@ -191,7 +200,7 @@ def parm2struc(structData, constrains):
 def struc2param(
     struct, energy, constrains, CheckFrConstrains=False, writefile=None
 ):
-    lattice = constrains["lattice"]
+    lattice = struct["lattice"]
     pos = np.array([list(site.frac_coords) for site in struct.sites]).flatten()
 
     species = [site.specie.symbol for site in struct.sites]
@@ -204,10 +213,15 @@ def struc2param(
         lattice.gamma,
     ]
 
-    StructData = {"parameters": pos, "species": species}
+    StructData = {
+        "lattice": lattice,
+        "parameters": pos,
+        "species": species,
+        "constraint": constrains,
+    }
 
     if CheckFrConstrains:
-        if check_constrains(StructData, constrains, verbose=False):
+        if check_constrains(StructData):
             pass
         else:
             return StructData, 1e300

@@ -3,9 +3,9 @@ import random
 import numpy as np
 
 import CASTING
+import CASTING.optimizers as optimizers
 from CASTING.clusterfun import createRandomData
 from CASTING.perturb import perturbate
-import CASTING.optimizers as optimizers
 
 logger = CASTING.logger
 
@@ -32,7 +32,7 @@ def run(conf):
         simpars = conf.get(simname, {})
         modulename, clsname = simulator_list[simname]
         sim_module = __import__(f'{modulename}', fromlist=[''])
-        evaluator = getattr(sim_module, clsname)(**simpars)
+        evaluator = getattr(sim_module, clsname)(simpars)
         logger.info(f'Initialized {simname} simulator.')
     except Exception as err:
         print(f"Cannot load '{simname}' simulator. {err}")

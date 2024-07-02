@@ -28,21 +28,14 @@ class LammpsEvaluator(object):
     Performs energy evaluations on a offspring
     """
 
-    def __init__(
-        self,
-        constrains,
-        pair_style,
-        pair_coeff,
-    ):
-        self.constrains = constrains
-        self.pair_style = pair_style
-        self.pair_coeff = pair_coeff
+    def __init__(self, pars):
+        self.pars = pars
 
     def evaluate(self, structData):
-        if not check_constrains(structData, self.constrains, verbose=False):
+        if not check_constrains(structData):
             return structData, 1e300
 
-        struct = parm2struc(structData, self.constrains)
+        struct = parm2struc(structData)
         LammpsData.from_structure(struct, atom_style="atomic").write_file(
             "in.data"
         )
@@ -56,8 +49,8 @@ class LammpsEvaluator(object):
         lmp.command("atom_modify map array sort 0 0")
         lmp.command("boundary f f f")
         lmp.command("read_data in.data")
-        lmp.command("{}".format(self.pair_style))
-        lmp.command("{}".format(self.pair_coeff))
+        lmp.command(f"{self.pars['pair_style']}")
+        lmp.command(f"{self.pars['pair_coeff']}")
         lmp.command("thermo 1000")
         lmp.command("thermo_style custom step etotal atoms vol")
         lmp.command("thermo_modify format float %5.14g")
@@ -90,7 +83,7 @@ class LammpsEvaluator(object):
         minData, mineng = struc2param(
             minstruct,
             energy,
-            self.constrains,
+            structData['constrains'],
             CheckFrConstrains=True,
             writefile="dumpfile.dat",
         )
