@@ -58,14 +58,17 @@ This package requires:
 
 ## Installation
 
-### Conda environment
-[Install the anaconda package](https://docs.anaconda.com/anaconda/install/). Then, 
+### Set up Python environment
+
+[Install Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/).
+
 ```
-conda env create --name CASTING
-conda activate CASTING
+conda create -p /path/to/env-casting python=3.11
+source activate /path/to/env-casting
 ```
 
-### Install from GitHub
+
+### Install CASTING from GitHub
 
 ```
 python -m pip install git+https://github.com/ANL-NST/CASTING.git
@@ -78,11 +81,34 @@ python -m pip install --force-reinstall --no-deps git+https://github.com/ANL-NST
 ```
 
 
-***The package requires python lammps binding to run. First, lammps package needs to be downloaded from [LAMMPS download](https://www.lammps.org/download.html) and compiled. The instructions on python integration can be found here [LAMMPS-Python](https://docs.lammps.org/Python_install.html).
+### Install LAMMPS simulator
+
+```
+git clone https://github.com/lammps/lammps.git
+
+root=$(pwd)/lammps
+
+cd $root/src
+make yes-manybody
+make -j4 mode=shared serial
+ln -s $root/src/liblammps_serial.so $root/python/liblammps.so
+
+echo "export PYTHONPATH=\${PYTHONPATH}:$root/python" >> $HOME/.bashrc
+echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$root/src" >> $HOME/.bashrc
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+### Starting the CASTING endpoint server
+
+```
+python -m CASTING.endpoint --host 127.0.0.1 --port 5000
+```
+
+
 ### Running the code
+
 <p align="justify"> First, all the parameters crystal (constrains), LAMMPS parameters (pair style, pair coefficient etc.) and the perturbation parameter need to be set.</p>
 
 
@@ -131,7 +157,7 @@ We have also used CASTING to sample metastable polymorphs of Carbon(C). All the 
 
 <p align="center"> <a href="url"><img src="https://github.com/sbanik2/CASTING/blob/main/figs/MetastableC.png" align="center" height="400" width="500" ></a> </p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Citation
 ```
@@ -147,15 +173,15 @@ We have also used CASTING to sample metastable polymorphs of Carbon(C). All the 
 }
 
 ```
-    
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-        
+
 ## License
 CASTING is distributed under MIT License. See `LICENSE` for details.
-    
-    
-<p align="right">(<a href="#readme-top">back to top</a>)</p>  
-    
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!--LINKS -->
 
 [colab-shield]: https://colab.research.google.com/assets/colab-badge.svg
@@ -169,5 +195,5 @@ CASTING is distributed under MIT License. See `LICENSE` for details.
 [size-shield]: https://img.shields.io/github/languages/code-size/sbanik2/CASTING
 [DOI-shield]: https://img.shields.io/badge/Paper-8A2BE2
 [DOI-url]: https://doi.org/10.1038/s41524-023-01128-y
-    
-    
+
+
