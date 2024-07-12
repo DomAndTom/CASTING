@@ -81,6 +81,19 @@ python -m pip install --force-reinstall --no-deps git+https://github.com/ANL-NST
 ```
 
 
+### CASTING endpoint server
+
+```
+$ python -m CASTING.endpoint --host 127.0.0.1 --port 5000
+INFO:     Started server process
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:5000 (Press CTRL+C to quit)
+
+# Visit http://127.0.0.1:5000 on a web browser.
+```
+
+
 ### Install LAMMPS simulator
 
 ```
@@ -98,13 +111,6 @@ echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:$root/src" >> $HOME/.bashrc
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Starting the CASTING endpoint server
-
-```
-python -m CASTING.endpoint --host 127.0.0.1 --port 5000
-```
 
 
 ### Running the code
