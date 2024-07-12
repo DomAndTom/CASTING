@@ -18,6 +18,14 @@ async def index():
     return fl.responses.RedirectResponse('/docs')
 
 
+@api.get('/favicon.ico')
+async def favicon():
+    return fl.responses.FileResponse(
+        path=rootdir / "static/favicon.ico",
+        headers={"Content-Disposition": "attachment; filename=favicon.ico"},
+    )
+
+
 @api.get("/inputs/")
 def query_inputs(query: str = ''):
     out = yaml.safe_load(open(rootdir / 'inputs_def.yml'))
