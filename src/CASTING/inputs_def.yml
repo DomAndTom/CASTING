@@ -1,0 +1,418 @@
+job_ID:
+  type: string
+  description: "automatically generated unique ID"
+
+job_title:
+  type: string
+  description: "job nickname"
+
+job_type:
+  type: string
+  description: "CASTING job type"
+  input_type: radio
+  input_label: "Select a job type"
+  input_options:
+
+    - value: structure_search
+      description: "Perform structural search."
+
+    - value: design_opt
+      description: "Perform design optimization."
+      disabled: true
+
+  default: structure_search
+
+simulator:
+  type: string
+  description: "CASTING job type"
+  input_type: radio
+  input_label: "Select a simulator"
+  input_options:
+
+    - value: lammps
+      description: "LAMMPS molecular dynamics simulator"
+      enabled_for:
+        - job_type==structure_search
+
+    - value: vasp
+      description: "VASP: Vienna Ab initio Simulation"
+      enabled_for:
+        - job_type==structure_search
+      disabled: true
+
+  default: lammps
+
+lammps:
+  type: map
+  description: "Parameters for LAMMPS simulator"
+  map_items:
+
+    - key: pair_style
+      description: https://docs.lammps.org/pair_style.html
+      value_type: string
+      input_type: text
+      input_label: "pair_style ...."
+      default: "pair_style eam"
+
+    - key: pair_coeff
+      description: https://docs.lammps.org/pair_coeff.html
+      value_type: string
+      input_type: text
+      input_label: "pair_coeff ...."
+      default: "pair_coeff * * Au.eam"
+
+  enabled_for:
+    - job_type==structure_search
+
+
+target_properties:
+  type: string
+  description: "Optimization objectives"
+  input_type: checkbox
+  input_options:
+
+    - value: energy_min
+      description: "Energy minimization"
+
+    - value: energy_max
+      description: "Energy maximization"
+      disabled: true
+
+    - value: density_min
+      description: "Density minimization"
+      disabled: true
+
+    - value: density_max
+      description: "Density maximization"
+      disabled: true
+
+    - value: elastic
+      description: "Elastic constant"
+      disabled: true
+
+  input_default:
+    - energy_min
+
+lattice:
+  type: map
+  description: "Simulation box definition."
+  map_items:
+
+    - key: dimensionality
+      description: "Dimensionality of simulation system."
+      value_type: string
+      input_type: radio
+      input_options:
+        - value: 1D
+        - value: 2D
+        - value: 3D
+
+    - key: min_a
+      description: "Lower bound of lattice parameter a (x-axis)."
+      value_type: float
+      value_unit: Å
+      limit: "(0, max_a]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 1.0
+
+    - key: max_a
+      description: "Upper bound of lattice parameter a (x-axis)."
+      value_type: float
+      value_unit: Å
+      interval: "[min_a, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 30.0
+
+    - key: pad_a
+      description: "Padding along a (x-axis)."
+      value_type: float
+      value_unit: Å
+      interval: "[0, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 10.0
+
+    - key: min_b
+      description: "Lower bound of lattice parameter b."
+      value_type: float
+      value_unit: Å
+      interval: "(0, max_b]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 1.0
+
+    - key: max_b
+      description: "Upper bound of lattice parameter b."
+      value_type: float
+      value_unit: Å
+      interval: "[min_b, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 30.0
+
+    - key: pad_b
+      description: "Padding along b."
+      value_type: float
+      value_unit: Å
+      interval: "[0, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 10.0
+
+    - key: min_c
+      description: "Lower bound of lattice parameter c."
+      value_type: float
+      value_unit: Å
+      interval: "(0, max_c]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 1.0
+
+    - key: max_c
+      description: "Upper bound of lattice parameter c."
+      value_type: float
+      value_unit: Å
+      interval: "[min_c, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 30.0
+
+    - key: pad_c
+      description: "Padding along c."
+      value_type: float
+      value_unit: Å
+      interval: "[0, inf)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 10.0
+
+    - key: min_alpha
+      description: "Lower bound of lattice parameter alpha (angle between b and c)."
+      value_type: float
+      value_unit: deg
+      interval: "(0, max_alpha]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 90.0
+
+    - key: max_alpha
+      description: "Upper bound of lattice parameter alpha (angle between b and c)."
+      value_type: float
+      value_unit: deg
+      interval: "[min_alpha, 180)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 90.0
+
+    - key: min_beta
+      description: "Lower bound of lattice parameter beta (angle between a and c)."
+      value_type: float
+      value_unit: deg
+      interval: "(0, max_beta]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 90.0
+
+    - key: max_beta
+      description: "Upper bound of lattice parameter beta (angle between a and c)."
+      value_type: float
+      value_unit: deg
+      interval: "[min_beta, 180)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==3D
+      default: 90.0
+
+    - key: min_gamma
+      description: "Lower bound of lattice parameter gamma (angle between a and b)."
+      value_type: float
+      value_unit: deg
+      interval: "(0, max_gamma]"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 90.0
+
+    - key: max_gamma
+      description: "Upper bound of lattice parameter gamma (angle between a and b)."
+      value_type: float
+      value_unit: deg
+      interval: "[min_gamma, 180)"
+      input_type: number
+      enabled_for:
+        - lattice/dimensionality==2D
+        - lattice/dimensionality==3D
+      default: 90.0
+
+constraint:
+  type: map
+  description: "Simulation system constraints."
+  map_items:
+
+    - key: composition
+      description: "Relative composition of elements."
+      value_type: dict
+      input_type: map
+      map_items:
+
+        - key: element
+          value_type: string
+          input_type: select
+          input_label: "Select an element"
+          input_options: "[periodic table of elements]"
+
+        - key: stoichiometry
+          value_type: float
+          interval: "[0, inf)"
+          input_type: number
+
+    - key: min_num_atoms
+      description: "Minimum number of atoms."
+      value_type: integer
+      interval: "[2, max_num_atoms]"
+      input_type: number
+
+    - key: max_num_atoms
+      description: "Maximum number of atoms."
+      value_type: integer
+      interval: "[min_num_atoms, int)"
+      input_type: number
+
+    - key: min_volume
+      description: "Minimum volume."
+      value_type: float
+      value_unit: Å^3
+      interval: "[0, max_num_volume]"
+      input_type: number
+
+    - key: max_volume
+      description: "Maximum volume."
+      value_type: float
+      value_unit: Å^3
+      interval: "[min_num_volume, inf)"
+      input_type: number
+
+perturbation:
+  type: map
+  description: "System perturbation."
+  map_items:
+
+    - key: prob_add_atom
+      description: "Probability of adding a new atom."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_del_atom
+      description: "Probability of deleting an atom."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_mutate_atom
+      description: "Probability of changing type of an atom."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_mutate_lattice_length
+      description: "Probability of changing the box length."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_mutate_lattice_ang
+      description: "Probability of changing the box tilt angle."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_slicing
+      description: "Probability of slicing the box."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_merging
+      description: "Probability of merging two boxes."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+    - key: prob_crossover
+      description: "Probability of crossover boxes."
+      value_type: float
+      interval: "[0, 1]"
+      input_type: number
+      default: 0.125
+
+optimizer:
+  type: map
+  description: "Optimizer setup."
+  map_items:
+
+    - key: name
+      description: "Optimization algorithm."
+      input_type: radio
+      input_options:
+
+        - value: MCTS
+
+        - value: Bayesian
+          disabled: true
+
+    - key: num_iteration
+      description: "Number of iterations."
+      value_type: integer
+      interval: "[1, inf)"
+      input_type: number
+      default: 2000
+
+    - key: num_head_expansions
+      description: "Number of tree head expension."
+      value_type: integer
+      interval: "[1, inf)"
+      input_type: number
+      default: 10
+
+    - key: num_play_expansions
+      description: "Number of tree head expension."
+      value_type: integer
+      interval: "[1, inf)"
+      input_type: number
+      default: 10
+
+    - key: exploration_const
+      description: "Exploration constant."
+      value_type: float
+      interval: "[0, inf)"
+      input_type: number
+      default: 60

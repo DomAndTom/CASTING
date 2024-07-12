@@ -3,6 +3,7 @@ import shutil
 from pathlib import Path
 
 import fastapi as fl
+import yaml
 from fastapi.templating import Jinja2Templates
 
 from . import rootdir, rootname
@@ -15,6 +16,41 @@ page = Jinja2Templates(directory=rootdir / "pages").TemplateResponse
 @api.get("/")
 async def index():
     return fl.responses.RedirectResponse('/docs')
+
+
+@api.get("/inputs/")
+def query_inputs(query: str = ''):
+    out = yaml.safe_load(open(rootdir / 'inputs_def.yml'))
+    available = list(out.keys())
+
+    # first level
+    qs = list(Path(query).parts)
+    if not qs or qs[0] not in available:
+        return {"available_queries": available}
+    out = out[qs[0]]
+    qs += ['/'] * (query[-1] == '/')
+
+    # subsequent levels
+    for i, q in enumerate(qs[1:], 1):
+        # direct descent
+        if q in out:
+            out = out.get(q, out)
+            continue
+        # options
+        for s0, s1 in [('map_items', 'key'), ('input_options', 'value')]:
+            available = [s[s1] for s in out.get(s0, [])]
+            if not available:
+                continue
+            elif q not in available:
+                prefix = '/'.join(qs[:i])
+                available = [f"{prefix}/{s}" for s in available]
+                return {"available_queries": available}
+            else:
+                ix = available.index(q)
+                out = {'type': s0, **out[s0][ix]}
+                out.pop(s1)
+                break
+    return {'query': query, **out}
 
 
 @api.post("/file/{jobID}")
