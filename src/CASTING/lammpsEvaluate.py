@@ -10,20 +10,25 @@ Created on 2022-12-13 20:36:01.409428
 
 
 import math
+import time
+from hashlib import sha256 as hashfunc
 
 from lammps import lammps
 from pymatgen.io.lammps.data import LammpsData
+from pymatgen.io.xyz import XYZ
 
 from CASTING.clusterfun import check_constrains, parm2struc, struc2param
 
+from . import logger
+
 # In[ ]:
 
-cmds = ["-screen", "log.screen"]
+cmds = ["-screen", "none", "-log", "none"]
 lmp = lammps(cmdargs=cmds)
 # lmp  = lammps()
 
 
-class LammpsEvaluator(object):
+class LammpsEvaluator:
     """
     Performs energy evaluations on a offspring
     """
@@ -53,7 +58,7 @@ class LammpsEvaluator(object):
         lmp.command(f"{self.pars['pair_coeff']}")
         lmp.command("thermo 1000")
         lmp.command("thermo_style custom step etotal atoms vol")
-        lmp.command("thermo_modify format float %5.14g")
+        lmp.command("thermo_modify format float %5.14g lost ignore")
         lmp.command("variable potential equal pe/atoms")
         lmp.command("neigh_modify one 5000 delay 0 every 1 check yes")
         lmp.command("run 0 pre no")
@@ -66,8 +71,6 @@ class LammpsEvaluator(object):
             return structData, 1e300
         elif math.isnan(float(energy)):
             return structData, 1e300
-        else:
-            pass
         # ---------------------------------------------
 
         lmp.command("minimize 1.0e-8 1.0e-8 10000 10000")
@@ -76,16 +79,37 @@ class LammpsEvaluator(object):
 
         energy = lmp.extract_variable("potential", None, 0)
 
+        # lost ignore: compare number of atoms written and expected
+        expected_natom = lmp.get_natoms()
+        with open("min.geo") as f:
+            for i, line in enumerate(f):
+                if i == 2:
+                    natom = int(line.split()[0])
+                    break
+        if natom != expected_natom:
+            return structData, 1e300
+
         minstruct = LammpsData.from_file(
             "min.geo", atom_style="atomic"
         ).structure
 
+        ID = hashfunc(str(minstruct.as_dict()).encode()).hexdigest()[:6]
+
         minData, mineng = struc2param(
             minstruct,
             energy,
-            structData['constrains'],
+            structData['constraint'],
             CheckFrConstrains=True,
-            writefile="dumpfile.dat",
+            # writefile="dumpfile.dat",
         )
+
+        if mineng is False:
+            logger.info(f'Structure {ID} failed constraints, skipped.')
+            return minData, 1e300
+
+        # output structure to xyz file
+        XYZ(minstruct).write_file(f'structures/{ID}.xyz')
+        open('dumpfile.dat', 'a').write(f"{time.time()} {ID} {mineng}\n")
+        logger.info(f"Output structure {ID}.")
 
         return minData, mineng

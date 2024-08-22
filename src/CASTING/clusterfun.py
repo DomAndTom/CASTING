@@ -69,7 +69,7 @@ def createRandomData(lattice, constrains, multiplier=10):
         try:
             sampled_nodes = random_sub_cluster_sample(A, natoms)
             break
-        except:
+        except Exception:
             continue
 
     latt = get_lattice(
@@ -200,18 +200,20 @@ def parm2struc(structData):
 def struc2param(
     struct, energy, constrains, CheckFrConstrains=False, writefile=None
 ):
-    lattice = struct["lattice"]
+    lattice = getattr(struct, "lattice")
+
     pos = np.array([list(site.frac_coords) for site in struct.sites]).flatten()
 
     species = [site.specie.symbol for site in struct.sites]
-    latt = [
-        lattice.a,
-        lattice.b,
-        lattice.c,
-        lattice.alpha,
-        lattice.beta,
-        lattice.gamma,
-    ]
+
+    # latt = [
+    #     lattice.a,
+    #     lattice.b,
+    #     lattice.c,
+    #     lattice.alpha,
+    #     lattice.beta,
+    #     lattice.gamma,
+    # ]
 
     StructData = {
         "lattice": lattice,
@@ -220,22 +222,19 @@ def struc2param(
         "constraint": constrains,
     }
 
-    if CheckFrConstrains:
-        if check_constrains(StructData):
-            pass
-        else:
-            return StructData, 1e300
+    if CheckFrConstrains and not check_constrains(StructData):
+        return StructData, False
 
-    if writefile is not None:
-        dataString = (
-            " ".join(map(str, latt + pos.tolist()))
-            + "|"
-            + " ".join(species)
-            + "|"
-            + "{}".format(energy)
-        )
+    # if writefile is not None:
+    #     dataString = (
+    #         " ".join(map(str, latt + pos.tolist()))
+    #         + "|"
+    #         + " ".join(species)
+    #         + "|"
+    #         + "{}".format(energy)
+    #     )
 
-        with open(writefile, "a") as outfile:
-            outfile.write("{}\n".format(dataString))
+    #     with open(writefile, "a") as outfile:
+    #         outfile.write("{}\n".format(dataString))
 
     return StructData, energy
