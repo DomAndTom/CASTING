@@ -1,0 +1,446 @@
+2024-08-22 CDT 13:48:19.505 (MainProcess, MainThread) [INFO]: --- CASTING configurations ---
+{'job_ID': '123456', 'job_title': 'Job Nickname', 'job_type': 'structure_search', 'simulator': 'lammps', 'file': {'lmpdata': 'file:///path/to/filename.data', 'poscar': 'file:///path/to/filename.poscar', 'incar': 'file:///path/to/filename.incar'}, 'lammps': {'pair_style': 'pair_style eam', 'pair_coeff': 'pair_coeff * * Au.eam'}, 'target_properties': ['energy_min', 'density_min', 'elastic'], 'lattice': {'dimensionality': '1D', 'min_a': 30, 'max_a': 30, 'pad_a': 10, 'min_b': 1, 'max_b': 30, 'pad_b': 10, 'min_c': 1, 'max_c': 30, 'pad_c': 0, 'min_alpha': 90, 'max_alpha': 90, 'min_beta': 90, 'max_beta': 90, 'min_gamma': 90, 'max_gamma': 90}, 'constraint': {'composition': {'Au': 1.0}, 'min_atom_pair_distance': 2, 'max_atom_pair_distance': 4, 'min_num_atoms': 1, 'max_num_atoms': 30, 'min_volume': 1, 'max_volume': 30}, 'perturbation': {'prob_add_atom': 0.125, 'prob_del_atom': 0.125, 'prob_mutate_atom': 0.125, 'prob_mutate_lattice_length': 0.125, 'prob_mutate_lattice_ang': 0.125, 'prob_slicing': 0.125, 'prob_merging': 0.125, 'prob_crossover': 0.125}, 'optimizer': {'name': 'MCTS', 'num_iteration': 2000, 'num_head_expansions': 10, 'num_play_expansions': 10, 'exploration_const': 60}}
+
+2024-08-22 CDT 13:48:19.507 (MainProcess, MainThread) [INFO]: --- run structure_search ---
+2024-08-22 CDT 13:48:23.449 (MainProcess, MainThread) [INFO]: Create random initial structure.
+2024-08-22 CDT 13:48:34.221 (MainProcess, MainThread) [INFO]: --- CASTING configurations ---
+{'job_ID': '123456', 'job_title': 'Job Nickname', 'job_type': 'structure_search', 'simulator': 'lammps', 'file': {'lmpdata': 'file:///path/to/filename.data', 'poscar': 'file:///path/to/filename.poscar', 'incar': 'file:///path/to/filename.incar'}, 'lammps': {'pair_style': 'pair_style eam', 'pair_coeff': 'pair_coeff * * Au.eam'}, 'target_properties': ['energy_min', 'density_min', 'elastic'], 'lattice': {'dimensionality': '1D', 'min_a': 30, 'max_a': 30, 'pad_a': 10, 'min_b': 1, 'max_b': 30, 'pad_b': 10, 'min_c': 1, 'max_c': 30, 'pad_c': 0, 'min_alpha': 90, 'max_alpha': 90, 'min_beta': 90, 'max_beta': 90, 'min_gamma': 90, 'max_gamma': 90}, 'constraint': {'composition': {'Au': 1.0}, 'min_atom_pair_distance': 2, 'max_atom_pair_distance': 4, 'min_num_atoms': 1, 'max_num_atoms': 30, 'min_volume': 1, 'max_volume': 30}, 'perturbation': {'prob_add_atom': 0.125, 'prob_del_atom': 0.125, 'prob_mutate_atom': 0.125, 'prob_mutate_lattice_length': 0.125, 'prob_mutate_lattice_ang': 0.125, 'prob_slicing': 0.125, 'prob_merging': 0.125, 'prob_crossover': 0.125}, 'optimizer': {'name': 'MCTS', 'num_iteration': 2000, 'num_head_expansions': 10, 'num_play_expansions': 10, 'exploration_const': 60}}
+
+2024-08-22 CDT 13:48:34.223 (MainProcess, MainThread) [INFO]: --- run structure_search ---
+2024-08-22 CDT 13:48:37.751 (MainProcess, MainThread) [INFO]: Create random initial structure.
+2024-08-22 CDT 13:48:37.920 (MainProcess, MainThread) [INFO]: Initialized lammps simulator.
+2024-08-22 CDT 13:48:37.921 (MainProcess, MainThread) [INFO]: Initialized MCTS optimizer.
+2024-08-22 CDT 13:48:38.607 (MainProcess, MainThread) [INFO]: Structure 592e50 failed constraints, skipped.
+2024-08-22 CDT 13:48:40.540 (MainProcess, MainThread) [INFO]: Structure 65e527 failed constraints, skipped.
+2024-08-22 CDT 13:48:41.043 (MainProcess, MainThread) [INFO]: Structure 936cf1 failed constraints, skipped.
+2024-08-22 CDT 13:48:41.434 (MainProcess, MainThread) [INFO]: Structure bbd3da failed constraints, skipped.
+2024-08-22 CDT 13:48:41.597 (MainProcess, MainThread) [INFO]: Structure f66038 failed constraints, skipped.
+2024-08-22 CDT 13:48:42.045 (MainProcess, MainThread) [INFO]: Structure e40cff failed constraints, skipped.
+2024-08-22 CDT 13:48:43.453 (MainProcess, MainThread) [INFO]: Structure d8e48a failed constraints, skipped.
+2024-08-22 CDT 13:48:45.197 (MainProcess, MainThread) [INFO]: Structure 99767b failed constraints, skipped.
+2024-08-22 CDT 13:48:45.763 (MainProcess, MainThread) [INFO]: Structure 7cf942 failed constraints, skipped.
+2024-08-22 CDT 13:48:48.991 (MainProcess, MainThread) [INFO]: Structure ae4fdf failed constraints, skipped.
+2024-08-22 CDT 13:48:54.107 (MainProcess, MainThread) [INFO]: Structure 53c44c failed constraints, skipped.
+2024-08-22 CDT 13:48:55.177 (MainProcess, MainThread) [INFO]: Structure c2f1a6 failed constraints, skipped.
+2024-08-22 CDT 13:48:56.323 (MainProcess, MainThread) [INFO]: Structure 41dd88 failed constraints, skipped.
+2024-08-22 CDT 13:49:07.819 (MainProcess, MainThread) [INFO]: Structure dee0a8 failed constraints, skipped.
+2024-08-22 CDT 13:49:12.249 (MainProcess, MainThread) [INFO]: Structure 3cbc4b failed constraints, skipped.
+2024-08-22 CDT 13:49:15.963 (MainProcess, MainThread) [INFO]: Structure df4973 failed constraints, skipped.
+2024-08-22 CDT 13:49:19.683 (MainProcess, MainThread) [INFO]: Structure 42cf6a failed constraints, skipped.
+2024-08-22 CDT 13:49:28.370 (MainProcess, MainThread) [INFO]: Structure 1ab138 failed constraints, skipped.
+2024-08-22 CDT 13:49:29.352 (MainProcess, MainThread) [INFO]: Structure f7f439 failed constraints, skipped.
+2024-08-22 CDT 13:49:31.370 (MainProcess, MainThread) [INFO]: Structure 1e0c34 failed constraints, skipped.
+2024-08-22 CDT 13:49:32.820 (MainProcess, MainThread) [INFO]: Structure 8b3314 failed constraints, skipped.
+2024-08-22 CDT 13:49:35.159 (MainProcess, MainThread) [INFO]: Structure 60494d failed constraints, skipped.
+2024-08-22 CDT 13:49:40.827 (MainProcess, MainThread) [INFO]: Structure 6489b4 failed constraints, skipped.
+2024-08-22 CDT 13:49:50.395 (MainProcess, MainThread) [INFO]: Structure e176ab failed constraints, skipped.
+2024-08-22 CDT 13:50:30.806 (MainProcess, MainThread) [INFO]: --- CASTING configurations ---
+{'job_ID': '123456', 'job_title': 'Job Nickname', 'job_type': 'structure_search', 'simulator': 'lammps', 'file': {'lmpdata': 'file:///path/to/filename.data', 'poscar': 'file:///path/to/filename.poscar', 'incar': 'file:///path/to/filename.incar'}, 'lammps': {'pair_style': 'pair_style eam', 'pair_coeff': 'pair_coeff * * Au.eam'}, 'target_properties': ['energy_min', 'density_min', 'elastic'], 'lattice': {'dimensionality': '1D', 'min_a': 30, 'max_a': 30, 'pad_a': 10, 'min_b': 1, 'max_b': 30, 'pad_b': 10, 'min_c': 1, 'max_c': 30, 'pad_c': 0, 'min_alpha': 90, 'max_alpha': 90, 'min_beta': 90, 'max_beta': 90, 'min_gamma': 90, 'max_gamma': 90}, 'constraint': {'composition': {'Au': 1.0}, 'min_atom_pair_distance': 2, 'max_atom_pair_distance': 4, 'min_num_atoms': 1, 'max_num_atoms': 30, 'min_volume': 1, 'max_volume': 30}, 'perturbation': {'prob_add_atom': 0.125, 'prob_del_atom': 0.125, 'prob_mutate_atom': 0.125, 'prob_mutate_lattice_length': 0.125, 'prob_mutate_lattice_ang': 0.125, 'prob_slicing': 0.125, 'prob_merging': 0.125, 'prob_crossover': 0.125}, 'optimizer': {'name': 'MCTS', 'num_iteration': 2000, 'num_head_expansions': 10, 'num_play_expansions': 10, 'exploration_const': 60}}
+
+2024-08-22 CDT 13:50:30.807 (MainProcess, MainThread) [INFO]: --- run structure_search ---
+2024-08-22 CDT 13:50:35.019 (MainProcess, MainThread) [INFO]: Create random initial structure.
+2024-08-22 CDT 13:50:35.197 (MainProcess, MainThread) [INFO]: Initialized lammps simulator.
+2024-08-22 CDT 13:50:35.197 (MainProcess, MainThread) [INFO]: Initialized MCTS optimizer.
+2024-08-22 CDT 13:50:35.979 (MainProcess, MainThread) [INFO]: Structure 592e50 failed constraints, skipped.
+2024-08-22 CDT 13:50:36.914 (MainProcess, MainThread) [INFO]: Structure 9a6c6b failed constraints, skipped.
+2024-08-22 CDT 13:50:37.154 (MainProcess, MainThread) [INFO]: Structure e808f5 failed constraints, skipped.
+2024-08-22 CDT 13:50:37.729 (MainProcess, MainThread) [INFO]: Structure b90f82 failed constraints, skipped.
+2024-08-22 CDT 13:50:38.994 (MainProcess, MainThread) [INFO]: Structure fac063 failed constraints, skipped.
+2024-08-22 CDT 13:50:39.449 (MainProcess, MainThread) [INFO]: Structure 470bd8 failed constraints, skipped.
+2024-08-22 CDT 13:50:40.165 (MainProcess, MainThread) [INFO]: Structure 59a761 failed constraints, skipped.
+2024-08-22 CDT 13:50:40.329 (MainProcess, MainThread) [INFO]: Structure c3d940 failed constraints, skipped.
+2024-08-22 CDT 13:50:40.672 (MainProcess, MainThread) [INFO]: Structure 6e9efd failed constraints, skipped.
+2024-08-22 CDT 13:50:45.162 (MainProcess, MainThread) [INFO]: Structure 6db21e failed constraints, skipped.
+2024-08-22 CDT 13:50:47.496 (MainProcess, MainThread) [INFO]: Structure f7ac3b failed constraints, skipped.
+2024-08-22 CDT 13:50:47.861 (MainProcess, MainThread) [INFO]: Structure f0c09c failed constraints, skipped.
+2024-08-22 CDT 13:50:48.042 (MainProcess, MainThread) [INFO]: Structure 4f6547 failed constraints, skipped.
+2024-08-22 CDT 13:50:48.314 (MainProcess, MainThread) [INFO]: Structure 5a69a2 failed constraints, skipped.
+2024-08-22 CDT 13:50:51.129 (MainProcess, MainThread) [INFO]: Structure 0ea3d9 failed constraints, skipped.
+2024-08-22 CDT 13:50:55.471 (MainProcess, MainThread) [INFO]: Structure 60f1f3 failed constraints, skipped.
+2024-08-22 CDT 13:50:57.021 (MainProcess, MainThread) [INFO]: Structure dfd0ca failed constraints, skipped.
+2024-08-22 CDT 13:51:00.430 (MainProcess, MainThread) [INFO]: Structure 5d6c77 failed constraints, skipped.
+2024-08-22 CDT 13:51:00.709 (MainProcess, MainThread) [INFO]: Structure 80d2ab failed constraints, skipped.
+2024-08-22 CDT 13:51:02.856 (MainProcess, MainThread) [INFO]: Structure 4c4895 failed constraints, skipped.
+2024-08-22 CDT 13:51:04.959 (MainProcess, MainThread) [INFO]: Structure 6d66c0 failed constraints, skipped.
+2024-08-22 CDT 13:51:08.358 (MainProcess, MainThread) [INFO]: Structure dac3f5 failed constraints, skipped.
+2024-08-22 CDT 13:51:09.818 (MainProcess, MainThread) [INFO]: Structure f3e351 failed constraints, skipped.
+2024-08-22 CDT 13:51:10.645 (MainProcess, MainThread) [INFO]: Structure 8fe958 failed constraints, skipped.
+2024-08-22 CDT 13:51:14.824 (MainProcess, MainThread) [INFO]: Structure 427748 failed constraints, skipped.
+2024-08-22 CDT 13:51:15.151 (MainProcess, MainThread) [INFO]: Structure 74c2ac failed constraints, skipped.
+2024-08-22 CDT 13:51:16.286 (MainProcess, MainThread) [INFO]: Structure 03318a failed constraints, skipped.
+2024-08-22 CDT 13:51:17.940 (MainProcess, MainThread) [INFO]: Structure 4f3b05 failed constraints, skipped.
+2024-08-22 CDT 13:51:18.234 (MainProcess, MainThread) [INFO]: Structure 046da3 failed constraints, skipped.
+2024-08-22 CDT 13:51:20.098 (MainProcess, MainThread) [INFO]: Structure 95cb8b failed constraints, skipped.
+2024-08-22 CDT 13:51:20.846 (MainProcess, MainThread) [INFO]: Structure 82a227 failed constraints, skipped.
+2024-08-22 CDT 13:51:29.912 (MainProcess, MainThread) [INFO]: Structure d9138e failed constraints, skipped.
+2024-08-22 CDT 13:51:31.426 (MainProcess, MainThread) [INFO]: Structure 2aaac5 failed constraints, skipped.
+2024-08-22 CDT 13:51:33.438 (MainProcess, MainThread) [INFO]: Structure 07a95f failed constraints, skipped.
+2024-08-22 CDT 13:51:39.874 (MainProcess, MainThread) [INFO]: Structure e8bb84 failed constraints, skipped.
+2024-08-22 CDT 13:51:41.019 (MainProcess, MainThread) [INFO]: Structure 974595 failed constraints, skipped.
+2024-08-22 CDT 13:51:42.050 (MainProcess, MainThread) [INFO]: Output structure 9a1bd6.
+2024-08-22 CDT 13:51:42.378 (MainProcess, MainThread) [INFO]: Structure 05f276 failed constraints, skipped.
+2024-08-22 CDT 13:51:42.611 (MainProcess, MainThread) [INFO]: Structure a2c38c failed constraints, skipped.
+2024-08-22 CDT 13:51:42.869 (MainProcess, MainThread) [INFO]: Structure 90eb59 failed constraints, skipped.
+2024-08-22 CDT 13:51:43.194 (MainProcess, MainThread) [INFO]: Structure e45717 failed constraints, skipped.
+2024-08-22 CDT 13:51:43.452 (MainProcess, MainThread) [INFO]: Structure 57c789 failed constraints, skipped.
+2024-08-22 CDT 13:51:43.678 (MainProcess, MainThread) [INFO]: Structure 4d83ec failed constraints, skipped.
+2024-08-22 CDT 13:51:43.903 (MainProcess, MainThread) [INFO]: Structure 731039 failed constraints, skipped.
+2024-08-22 CDT 13:51:44.211 (MainProcess, MainThread) [INFO]: Structure a2b46c failed constraints, skipped.
+2024-08-22 CDT 13:51:44.404 (MainProcess, MainThread) [INFO]: Output structure e6253a.
+2024-08-22 CDT 13:51:44.595 (MainProcess, MainThread) [INFO]: Structure b8a977 failed constraints, skipped.
+2024-08-22 CDT 13:51:44.763 (MainProcess, MainThread) [INFO]: Structure a626ab failed constraints, skipped.
+2024-08-22 CDT 13:51:44.930 (MainProcess, MainThread) [INFO]: Structure 1d48a3 failed constraints, skipped.
+2024-08-22 CDT 13:51:45.165 (MainProcess, MainThread) [INFO]: Structure 011497 failed constraints, skipped.
+2024-08-22 CDT 13:51:45.555 (MainProcess, MainThread) [INFO]: Structure 467fc0 failed constraints, skipped.
+2024-08-22 CDT 13:51:45.769 (MainProcess, MainThread) [INFO]: Output structure b54ead.
+2024-08-22 CDT 13:51:45.960 (MainProcess, MainThread) [INFO]: Structure 8c05c5 failed constraints, skipped.
+2024-08-22 CDT 13:51:46.150 (MainProcess, MainThread) [INFO]: Output structure 984343.
+2024-08-22 CDT 13:51:46.444 (MainProcess, MainThread) [INFO]: Structure ea6314 failed constraints, skipped.
+2024-08-22 CDT 13:51:46.740 (MainProcess, MainThread) [INFO]: Structure ca5e2b failed constraints, skipped.
+2024-08-22 CDT 13:51:46.958 (MainProcess, MainThread) [INFO]: Structure 984070 failed constraints, skipped.
+2024-08-22 CDT 13:51:47.187 (MainProcess, MainThread) [INFO]: Output structure 6fda8a.
+2024-08-22 CDT 13:51:47.447 (MainProcess, MainThread) [INFO]: Structure 00032d failed constraints, skipped.
+2024-08-22 CDT 13:51:47.730 (MainProcess, MainThread) [INFO]: Structure 75adf1 failed constraints, skipped.
+2024-08-22 CDT 13:51:47.997 (MainProcess, MainThread) [INFO]: Structure 002702 failed constraints, skipped.
+2024-08-22 CDT 13:51:48.216 (MainProcess, MainThread) [INFO]: Structure 8ca946 failed constraints, skipped.
+2024-08-22 CDT 13:51:48.438 (MainProcess, MainThread) [INFO]: Structure 63f043 failed constraints, skipped.
+2024-08-22 CDT 13:51:48.819 (MainProcess, MainThread) [INFO]: Output structure e9cfbc.
+2024-08-22 CDT 13:51:49.008 (MainProcess, MainThread) [INFO]: Output structure af6255.
+2024-08-22 CDT 13:51:49.309 (MainProcess, MainThread) [INFO]: Structure 095cdb failed constraints, skipped.
+2024-08-22 CDT 13:51:49.530 (MainProcess, MainThread) [INFO]: Structure dd6e13 failed constraints, skipped.
+2024-08-22 CDT 13:51:49.753 (MainProcess, MainThread) [INFO]: Structure bdd9c2 failed constraints, skipped.
+2024-08-22 CDT 13:51:50.036 (MainProcess, MainThread) [INFO]: Output structure 460195.
+2024-08-22 CDT 13:51:50.252 (MainProcess, MainThread) [INFO]: Structure c93ecf failed constraints, skipped.
+2024-08-22 CDT 13:51:50.557 (MainProcess, MainThread) [INFO]: Structure a45a84 failed constraints, skipped.
+2024-08-22 CDT 13:51:50.803 (MainProcess, MainThread) [INFO]: Structure 124bf6 failed constraints, skipped.
+2024-08-22 CDT 13:51:51.033 (MainProcess, MainThread) [INFO]: Structure 280f19 failed constraints, skipped.
+2024-08-22 CDT 13:51:51.371 (MainProcess, MainThread) [INFO]: Structure dc80c0 failed constraints, skipped.
+2024-08-22 CDT 13:51:51.748 (MainProcess, MainThread) [INFO]: Structure a29821 failed constraints, skipped.
+2024-08-22 CDT 13:51:52.286 (MainProcess, MainThread) [INFO]: Structure ed1699 failed constraints, skipped.
+2024-08-22 CDT 13:51:52.507 (MainProcess, MainThread) [INFO]: Structure f8d81d failed constraints, skipped.
+2024-08-22 CDT 13:51:52.694 (MainProcess, MainThread) [INFO]: Structure 19f63b failed constraints, skipped.
+2024-08-22 CDT 13:51:52.860 (MainProcess, MainThread) [INFO]: Structure 08cd45 failed constraints, skipped.
+2024-08-22 CDT 13:51:53.341 (MainProcess, MainThread) [INFO]: Structure 71eb0e failed constraints, skipped.
+2024-08-22 CDT 13:51:53.562 (MainProcess, MainThread) [INFO]: Structure f6e888 failed constraints, skipped.
+2024-08-22 CDT 13:51:53.813 (MainProcess, MainThread) [INFO]: Structure 06c756 failed constraints, skipped.
+2024-08-22 CDT 13:51:53.977 (MainProcess, MainThread) [INFO]: Structure e5f741 failed constraints, skipped.
+2024-08-22 CDT 13:51:54.244 (MainProcess, MainThread) [INFO]: Output structure 125043.
+2024-08-22 CDT 13:51:54.509 (MainProcess, MainThread) [INFO]: Structure 618249 failed constraints, skipped.
+2024-08-22 CDT 13:51:54.734 (MainProcess, MainThread) [INFO]: Output structure 5469a4.
+2024-08-22 CDT 13:51:54.955 (MainProcess, MainThread) [INFO]: Structure e78a6a failed constraints, skipped.
+2024-08-22 CDT 13:51:55.192 (MainProcess, MainThread) [INFO]: Structure e0abf0 failed constraints, skipped.
+2024-08-22 CDT 13:51:55.881 (MainProcess, MainThread) [INFO]: Output structure d0de77.
+2024-08-22 CDT 13:51:56.148 (MainProcess, MainThread) [INFO]: Structure 4d0964 failed constraints, skipped.
+2024-08-22 CDT 13:51:56.337 (MainProcess, MainThread) [INFO]: Structure 0129bb failed constraints, skipped.
+2024-08-22 CDT 13:51:56.499 (MainProcess, MainThread) [INFO]: Structure 6d386c failed constraints, skipped.
+2024-08-22 CDT 13:51:56.666 (MainProcess, MainThread) [INFO]: Structure ad4fcc failed constraints, skipped.
+2024-08-22 CDT 13:51:56.878 (MainProcess, MainThread) [INFO]: Structure 3c05e1 failed constraints, skipped.
+2024-08-22 CDT 13:51:57.042 (MainProcess, MainThread) [INFO]: Structure 11a592 failed constraints, skipped.
+2024-08-22 CDT 13:51:57.205 (MainProcess, MainThread) [INFO]: Structure 33d4a6 failed constraints, skipped.
+2024-08-22 CDT 13:51:57.415 (MainProcess, MainThread) [INFO]: Structure 3e64a9 failed constraints, skipped.
+2024-08-22 CDT 13:51:57.577 (MainProcess, MainThread) [INFO]: Structure 954f80 failed constraints, skipped.
+2024-08-22 CDT 13:51:57.775 (MainProcess, MainThread) [INFO]: Structure f15b5d failed constraints, skipped.
+2024-08-22 CDT 13:51:58.048 (MainProcess, MainThread) [INFO]: Structure 094837 failed constraints, skipped.
+2024-08-22 CDT 13:51:58.277 (MainProcess, MainThread) [INFO]: Structure 6b810d failed constraints, skipped.
+2024-08-22 CDT 13:51:58.556 (MainProcess, MainThread) [INFO]: Structure 0da604 failed constraints, skipped.
+2024-08-22 CDT 13:51:58.844 (MainProcess, MainThread) [INFO]: Structure 38d821 failed constraints, skipped.
+2024-08-22 CDT 13:51:59.119 (MainProcess, MainThread) [INFO]: Structure 9f79cd failed constraints, skipped.
+2024-08-22 CDT 13:51:59.339 (MainProcess, MainThread) [INFO]: Structure 78c252 failed constraints, skipped.
+2024-08-22 CDT 13:51:59.559 (MainProcess, MainThread) [INFO]: Structure 5aeecc failed constraints, skipped.
+2024-08-22 CDT 13:51:59.768 (MainProcess, MainThread) [INFO]: Structure 4df35a failed constraints, skipped.
+2024-08-22 CDT 13:51:59.935 (MainProcess, MainThread) [INFO]: Structure 7c4b80 failed constraints, skipped.
+2024-08-22 CDT 13:52:00.212 (MainProcess, MainThread) [INFO]: Structure 486d6a failed constraints, skipped.
+2024-08-22 CDT 13:52:00.410 (MainProcess, MainThread) [INFO]: Structure f5beed failed constraints, skipped.
+2024-08-22 CDT 13:52:00.572 (MainProcess, MainThread) [INFO]: Structure 73becd failed constraints, skipped.
+2024-08-22 CDT 13:52:00.851 (MainProcess, MainThread) [INFO]: Structure 828185 failed constraints, skipped.
+2024-08-22 CDT 13:52:01.015 (MainProcess, MainThread) [INFO]: Structure e3abfc failed constraints, skipped.
+2024-08-22 CDT 13:52:01.196 (MainProcess, MainThread) [INFO]: Structure 9ea72f failed constraints, skipped.
+2024-08-22 CDT 13:52:01.426 (MainProcess, MainThread) [INFO]: Structure 20c262 failed constraints, skipped.
+2024-08-22 CDT 13:52:01.610 (MainProcess, MainThread) [INFO]: Structure 3d20e3 failed constraints, skipped.
+2024-08-22 CDT 13:52:01.861 (MainProcess, MainThread) [INFO]: Output structure f70eb3.
+2024-08-22 CDT 13:52:02.419 (MainProcess, MainThread) [INFO]: Structure 386686 failed constraints, skipped.
+2024-08-22 CDT 13:52:02.719 (MainProcess, MainThread) [INFO]: Structure 3c047f failed constraints, skipped.
+2024-08-22 CDT 13:52:03.036 (MainProcess, MainThread) [INFO]: Output structure 8c599f.
+2024-08-22 CDT 13:52:03.304 (MainProcess, MainThread) [INFO]: Structure 78ebab failed constraints, skipped.
+2024-08-22 CDT 13:52:03.523 (MainProcess, MainThread) [INFO]: Structure ebda69 failed constraints, skipped.
+2024-08-22 CDT 13:52:03.929 (MainProcess, MainThread) [INFO]: Structure bf9d77 failed constraints, skipped.
+2024-08-22 CDT 13:52:04.161 (MainProcess, MainThread) [INFO]: Structure 4126ad failed constraints, skipped.
+2024-08-22 CDT 13:52:04.340 (MainProcess, MainThread) [INFO]: Structure c7bee4 failed constraints, skipped.
+2024-08-22 CDT 13:52:04.589 (MainProcess, MainThread) [INFO]: Structure 357e99 failed constraints, skipped.
+2024-08-22 CDT 13:52:04.848 (MainProcess, MainThread) [INFO]: Structure 353119 failed constraints, skipped.
+2024-08-22 CDT 13:52:05.130 (MainProcess, MainThread) [INFO]: Structure 394d60 failed constraints, skipped.
+2024-08-22 CDT 13:52:05.416 (MainProcess, MainThread) [INFO]: Output structure df9de2.
+2024-08-22 CDT 13:52:05.679 (MainProcess, MainThread) [INFO]: Structure ecc5fc failed constraints, skipped.
+2024-08-22 CDT 13:52:05.976 (MainProcess, MainThread) [INFO]: Structure ca86e5 failed constraints, skipped.
+2024-08-22 CDT 13:52:06.208 (MainProcess, MainThread) [INFO]: Structure 438dd0 failed constraints, skipped.
+2024-08-22 CDT 13:52:06.561 (MainProcess, MainThread) [INFO]: Output structure f4a6c0.
+2024-08-22 CDT 13:52:06.967 (MainProcess, MainThread) [INFO]: Structure 07e165 failed constraints, skipped.
+2024-08-22 CDT 13:52:07.212 (MainProcess, MainThread) [INFO]: Structure a8d4c0 failed constraints, skipped.
+2024-08-22 CDT 13:52:07.377 (MainProcess, MainThread) [INFO]: Structure a846fd failed constraints, skipped.
+2024-08-22 CDT 13:52:07.624 (MainProcess, MainThread) [INFO]: Output structure 3f5526.
+2024-08-22 CDT 13:52:07.788 (MainProcess, MainThread) [INFO]: Output structure 560bad.
+2024-08-22 CDT 13:52:07.968 (MainProcess, MainThread) [INFO]: Structure e97bad failed constraints, skipped.
+2024-08-22 CDT 13:52:08.371 (MainProcess, MainThread) [INFO]: Structure e5f3f0 failed constraints, skipped.
+2024-08-22 CDT 13:52:08.532 (MainProcess, MainThread) [INFO]: Structure afe7cd failed constraints, skipped.
+2024-08-22 CDT 13:52:08.709 (MainProcess, MainThread) [INFO]: Structure d64fc0 failed constraints, skipped.
+2024-08-22 CDT 13:52:08.872 (MainProcess, MainThread) [INFO]: Structure 201107 failed constraints, skipped.
+2024-08-22 CDT 13:52:09.049 (MainProcess, MainThread) [INFO]: Structure 4fac28 failed constraints, skipped.
+2024-08-22 CDT 13:52:09.308 (MainProcess, MainThread) [INFO]: Structure bbca9d failed constraints, skipped.
+2024-08-22 CDT 13:52:09.528 (MainProcess, MainThread) [INFO]: Structure 114540 failed constraints, skipped.
+2024-08-22 CDT 13:52:09.791 (MainProcess, MainThread) [INFO]: Structure 7affd5 failed constraints, skipped.
+2024-08-22 CDT 13:52:10.032 (MainProcess, MainThread) [INFO]: Structure 5195c4 failed constraints, skipped.
+2024-08-22 CDT 13:52:10.251 (MainProcess, MainThread) [INFO]: Structure 3bc65f failed constraints, skipped.
+2024-08-22 CDT 13:52:10.636 (MainProcess, MainThread) [INFO]: Structure 1ed616 failed constraints, skipped.
+2024-08-22 CDT 13:52:10.972 (MainProcess, MainThread) [INFO]: Output structure 8ad7dc.
+2024-08-22 CDT 13:52:11.133 (MainProcess, MainThread) [INFO]: Structure 4ed46c failed constraints, skipped.
+2024-08-22 CDT 13:52:11.380 (MainProcess, MainThread) [INFO]: Structure 317752 failed constraints, skipped.
+2024-08-22 CDT 13:52:11.542 (MainProcess, MainThread) [INFO]: Structure 000932 failed constraints, skipped.
+2024-08-22 CDT 13:52:11.705 (MainProcess, MainThread) [INFO]: Structure 3a2412 failed constraints, skipped.
+2024-08-22 CDT 13:52:11.881 (MainProcess, MainThread) [INFO]: Structure 445f9a failed constraints, skipped.
+2024-08-22 CDT 13:52:12.127 (MainProcess, MainThread) [INFO]: Structure e9d2b1 failed constraints, skipped.
+2024-08-22 CDT 13:52:12.350 (MainProcess, MainThread) [INFO]: Structure 423ab0 failed constraints, skipped.
+2024-08-22 CDT 13:52:12.569 (MainProcess, MainThread) [INFO]: Structure b51c6e failed constraints, skipped.
+2024-08-22 CDT 13:52:12.815 (MainProcess, MainThread) [INFO]: Structure 63cb59 failed constraints, skipped.
+2024-08-22 CDT 13:52:13.006 (MainProcess, MainThread) [INFO]: Structure 184caf failed constraints, skipped.
+2024-08-22 CDT 13:52:13.167 (MainProcess, MainThread) [INFO]: Structure 8fa0e2 failed constraints, skipped.
+2024-08-22 CDT 13:52:13.366 (MainProcess, MainThread) [INFO]: Structure daa4ee failed constraints, skipped.
+2024-08-22 CDT 13:52:13.528 (MainProcess, MainThread) [INFO]: Structure 18d418 failed constraints, skipped.
+2024-08-22 CDT 13:52:13.690 (MainProcess, MainThread) [INFO]: Structure 1206d3 failed constraints, skipped.
+2024-08-22 CDT 13:52:14.081 (MainProcess, MainThread) [INFO]: Structure a0ad76 failed constraints, skipped.
+2024-08-22 CDT 13:52:14.326 (MainProcess, MainThread) [INFO]: Structure 981507 failed constraints, skipped.
+2024-08-22 CDT 13:52:14.548 (MainProcess, MainThread) [INFO]: Output structure 4bf316.
+2024-08-22 CDT 13:52:14.769 (MainProcess, MainThread) [INFO]: Structure 026922 failed constraints, skipped.
+2024-08-22 CDT 13:52:14.970 (MainProcess, MainThread) [INFO]: Structure 5c1528 failed constraints, skipped.
+2024-08-22 CDT 13:52:15.188 (MainProcess, MainThread) [INFO]: Structure 5a4926 failed constraints, skipped.
+2024-08-22 CDT 13:52:15.352 (MainProcess, MainThread) [INFO]: Structure 26a16d failed constraints, skipped.
+2024-08-22 CDT 13:52:15.523 (MainProcess, MainThread) [INFO]: Structure fc7293 failed constraints, skipped.
+2024-08-22 CDT 13:52:15.724 (MainProcess, MainThread) [INFO]: Structure f5202c failed constraints, skipped.
+2024-08-22 CDT 13:52:15.886 (MainProcess, MainThread) [INFO]: Structure f6a04f failed constraints, skipped.
+2024-08-22 CDT 13:52:16.186 (MainProcess, MainThread) [INFO]: Structure e91f41 failed constraints, skipped.
+2024-08-22 CDT 13:52:16.435 (MainProcess, MainThread) [INFO]: Structure aa3f68 failed constraints, skipped.
+2024-08-22 CDT 13:52:16.820 (MainProcess, MainThread) [INFO]: Structure 5a40dc failed constraints, skipped.
+2024-08-22 CDT 13:52:17.064 (MainProcess, MainThread) [INFO]: Structure 3ab8ee failed constraints, skipped.
+2024-08-22 CDT 13:52:17.283 (MainProcess, MainThread) [INFO]: Structure 57b0bf failed constraints, skipped.
+2024-08-22 CDT 13:52:17.510 (MainProcess, MainThread) [INFO]: Structure 995456 failed constraints, skipped.
+2024-08-22 CDT 13:52:17.672 (MainProcess, MainThread) [INFO]: Structure a7a051 failed constraints, skipped.
+2024-08-22 CDT 13:52:17.832 (MainProcess, MainThread) [INFO]: Structure a9ef71 failed constraints, skipped.
+2024-08-22 CDT 13:52:17.992 (MainProcess, MainThread) [INFO]: Structure 9101aa failed constraints, skipped.
+2024-08-22 CDT 13:52:18.157 (MainProcess, MainThread) [INFO]: Structure 30d4fc failed constraints, skipped.
+2024-08-22 CDT 13:52:18.377 (MainProcess, MainThread) [INFO]: Structure a80708 failed constraints, skipped.
+2024-08-22 CDT 13:52:18.539 (MainProcess, MainThread) [INFO]: Structure ca7408 failed constraints, skipped.
+2024-08-22 CDT 13:52:18.703 (MainProcess, MainThread) [INFO]: Structure f5f5cb failed constraints, skipped.
+2024-08-22 CDT 13:52:18.936 (MainProcess, MainThread) [INFO]: Structure 824cf1 failed constraints, skipped.
+2024-08-22 CDT 13:52:19.358 (MainProcess, MainThread) [INFO]: Structure 8407ef failed constraints, skipped.
+2024-08-22 CDT 13:52:19.627 (MainProcess, MainThread) [INFO]: Structure 082331 failed constraints, skipped.
+2024-08-22 CDT 13:52:19.870 (MainProcess, MainThread) [INFO]: Structure bc88cb failed constraints, skipped.
+2024-08-22 CDT 13:52:20.183 (MainProcess, MainThread) [INFO]: Structure e5b013 failed constraints, skipped.
+2024-08-22 CDT 13:52:20.405 (MainProcess, MainThread) [INFO]: Output structure 134a39.
+2024-08-22 CDT 13:52:20.690 (MainProcess, MainThread) [INFO]: Output structure 57ee3a.
+2024-08-22 CDT 13:52:20.948 (MainProcess, MainThread) [INFO]: Structure ef5802 failed constraints, skipped.
+2024-08-22 CDT 13:52:21.292 (MainProcess, MainThread) [INFO]: Structure 34dc18 failed constraints, skipped.
+2024-08-22 CDT 13:52:21.585 (MainProcess, MainThread) [INFO]: Structure 6250fb failed constraints, skipped.
+2024-08-22 CDT 13:52:21.746 (MainProcess, MainThread) [INFO]: Structure f59432 failed constraints, skipped.
+2024-08-22 CDT 13:52:21.960 (MainProcess, MainThread) [INFO]: Structure e99659 failed constraints, skipped.
+2024-08-22 CDT 13:52:22.174 (MainProcess, MainThread) [INFO]: Structure 10e186 failed constraints, skipped.
+2024-08-22 CDT 13:52:22.376 (MainProcess, MainThread) [INFO]: Structure 574d26 failed constraints, skipped.
+2024-08-22 CDT 13:52:22.594 (MainProcess, MainThread) [INFO]: Output structure fdc521.
+2024-08-22 CDT 13:52:22.776 (MainProcess, MainThread) [INFO]: Structure 6da27c failed constraints, skipped.
+2024-08-22 CDT 13:52:22.958 (MainProcess, MainThread) [INFO]: Structure c46feb failed constraints, skipped.
+2024-08-22 CDT 13:52:23.121 (MainProcess, MainThread) [INFO]: Structure c1232a failed constraints, skipped.
+2024-08-22 CDT 13:52:23.303 (MainProcess, MainThread) [INFO]: Structure 1c22b5 failed constraints, skipped.
+2024-08-22 CDT 13:52:23.642 (MainProcess, MainThread) [INFO]: Structure bf0516 failed constraints, skipped.
+2024-08-22 CDT 13:52:24.270 (MainProcess, MainThread) [INFO]: Structure 42c2fc failed constraints, skipped.
+2024-08-22 CDT 13:52:24.506 (MainProcess, MainThread) [INFO]: Structure 5a3804 failed constraints, skipped.
+2024-08-22 CDT 13:52:24.706 (MainProcess, MainThread) [INFO]: Structure 08a92d failed constraints, skipped.
+2024-08-22 CDT 13:52:25.028 (MainProcess, MainThread) [INFO]: Structure a0da57 failed constraints, skipped.
+2024-08-22 CDT 13:52:25.351 (MainProcess, MainThread) [INFO]: Structure 76aa20 failed constraints, skipped.
+2024-08-22 CDT 13:52:25.570 (MainProcess, MainThread) [INFO]: Structure 69e0bc failed constraints, skipped.
+2024-08-22 CDT 13:52:25.890 (MainProcess, MainThread) [INFO]: Structure 5c936d failed constraints, skipped.
+2024-08-22 CDT 13:52:26.165 (MainProcess, MainThread) [INFO]: Output structure 4d706e.
+2024-08-22 CDT 13:52:26.530 (MainProcess, MainThread) [INFO]: Structure 83d942 failed constraints, skipped.
+2024-08-22 CDT 13:52:26.748 (MainProcess, MainThread) [INFO]: Structure 9cd112 failed constraints, skipped.
+2024-08-22 CDT 13:52:26.938 (MainProcess, MainThread) [INFO]: Structure af0d0a failed constraints, skipped.
+2024-08-22 CDT 13:52:27.217 (MainProcess, MainThread) [INFO]: Structure 8aa691 failed constraints, skipped.
+2024-08-22 CDT 13:52:27.518 (MainProcess, MainThread) [INFO]: Structure 67cceb failed constraints, skipped.
+2024-08-22 CDT 13:52:27.697 (MainProcess, MainThread) [INFO]: Structure 726a0a failed constraints, skipped.
+2024-08-22 CDT 13:52:27.862 (MainProcess, MainThread) [INFO]: Output structure a87e2f.
+2024-08-22 CDT 13:52:28.038 (MainProcess, MainThread) [INFO]: Structure e7e354 failed constraints, skipped.
+2024-08-22 CDT 13:52:28.217 (MainProcess, MainThread) [INFO]: Structure 9698e8 failed constraints, skipped.
+2024-08-22 CDT 13:52:28.379 (MainProcess, MainThread) [INFO]: Output structure 972ccb.
+2024-08-22 CDT 13:52:28.559 (MainProcess, MainThread) [INFO]: Structure 4eedfb failed constraints, skipped.
+2024-08-22 CDT 13:52:28.738 (MainProcess, MainThread) [INFO]: Structure 4e9231 failed constraints, skipped.
+2024-08-22 CDT 13:52:28.970 (MainProcess, MainThread) [INFO]: Structure 334f89 failed constraints, skipped.
+2024-08-22 CDT 13:52:29.212 (MainProcess, MainThread) [INFO]: Structure 54686c failed constraints, skipped.
+2024-08-22 CDT 13:52:29.448 (MainProcess, MainThread) [INFO]: Output structure 61dca3.
+2024-08-22 CDT 13:52:29.680 (MainProcess, MainThread) [INFO]: Structure 74cfe9 failed constraints, skipped.
+2024-08-22 CDT 13:52:29.950 (MainProcess, MainThread) [INFO]: Structure 3375c9 failed constraints, skipped.
+2024-08-22 CDT 13:52:30.153 (MainProcess, MainThread) [INFO]: Structure 1cf416 failed constraints, skipped.
+2024-08-22 CDT 13:52:30.333 (MainProcess, MainThread) [INFO]: Structure 272d5f failed constraints, skipped.
+2024-08-22 CDT 13:52:30.492 (MainProcess, MainThread) [INFO]: Structure aa7984 failed constraints, skipped.
+2024-08-22 CDT 13:52:30.722 (MainProcess, MainThread) [INFO]: Structure cef2e9 failed constraints, skipped.
+2024-08-22 CDT 13:52:31.129 (MainProcess, MainThread) [INFO]: Structure dd662e failed constraints, skipped.
+2024-08-22 CDT 13:52:31.472 (MainProcess, MainThread) [INFO]: Structure 4625f5 failed constraints, skipped.
+2024-08-22 CDT 13:52:31.704 (MainProcess, MainThread) [INFO]: Structure b02d72 failed constraints, skipped.
+2024-08-22 CDT 13:52:31.983 (MainProcess, MainThread) [INFO]: Structure 339c03 failed constraints, skipped.
+2024-08-22 CDT 13:52:32.215 (MainProcess, MainThread) [INFO]: Structure 8c1c07 failed constraints, skipped.
+2024-08-22 CDT 13:52:32.431 (MainProcess, MainThread) [INFO]: Structure 6f9035 failed constraints, skipped.
+2024-08-22 CDT 13:52:32.821 (MainProcess, MainThread) [INFO]: Output structure ac10c9.
+2024-08-22 CDT 13:52:33.026 (MainProcess, MainThread) [INFO]: Structure fbf9cf failed constraints, skipped.
+2024-08-22 CDT 13:52:33.419 (MainProcess, MainThread) [INFO]: Structure d9f611 failed constraints, skipped.
+2024-08-22 CDT 13:52:33.585 (MainProcess, MainThread) [INFO]: Structure 5161f1 failed constraints, skipped.
+2024-08-22 CDT 13:52:33.865 (MainProcess, MainThread) [INFO]: Structure 5e4c4f failed constraints, skipped.
+2024-08-22 CDT 13:52:34.198 (MainProcess, MainThread) [INFO]: Structure ca06b1 failed constraints, skipped.
+2024-08-22 CDT 13:52:34.419 (MainProcess, MainThread) [INFO]: Structure e8dcd7 failed constraints, skipped.
+2024-08-22 CDT 13:52:34.658 (MainProcess, MainThread) [INFO]: Structure 3c4a79 failed constraints, skipped.
+2024-08-22 CDT 13:52:34.842 (MainProcess, MainThread) [INFO]: Structure d49a68 failed constraints, skipped.
+2024-08-22 CDT 13:52:35.147 (MainProcess, MainThread) [INFO]: Structure 7cddaf failed constraints, skipped.
+2024-08-22 CDT 13:52:35.401 (MainProcess, MainThread) [INFO]: Structure f0e112 failed constraints, skipped.
+2024-08-22 CDT 13:52:35.618 (MainProcess, MainThread) [INFO]: Structure bbe012 failed constraints, skipped.
+2024-08-22 CDT 13:52:35.781 (MainProcess, MainThread) [INFO]: Structure f44acb failed constraints, skipped.
+2024-08-22 CDT 13:52:35.944 (MainProcess, MainThread) [INFO]: Structure c48bfd failed constraints, skipped.
+2024-08-22 CDT 13:52:36.109 (MainProcess, MainThread) [INFO]: Structure c3adf7 failed constraints, skipped.
+2024-08-22 CDT 13:52:36.454 (MainProcess, MainThread) [INFO]: Output structure 04227c.
+2024-08-22 CDT 13:52:36.701 (MainProcess, MainThread) [INFO]: Output structure e15e91.
+2024-08-22 CDT 13:52:36.925 (MainProcess, MainThread) [INFO]: Output structure c8fb2e.
+2024-08-22 CDT 13:52:37.153 (MainProcess, MainThread) [INFO]: Structure 0a5145 failed constraints, skipped.
+2024-08-22 CDT 13:52:37.335 (MainProcess, MainThread) [INFO]: Output structure f4f355.
+2024-08-22 CDT 13:52:37.511 (MainProcess, MainThread) [INFO]: Output structure fe9845.
+2024-08-22 CDT 13:52:37.689 (MainProcess, MainThread) [INFO]: Structure f62b51 failed constraints, skipped.
+2024-08-22 CDT 13:52:37.895 (MainProcess, MainThread) [INFO]: Structure a44486 failed constraints, skipped.
+2024-08-22 CDT 13:52:38.060 (MainProcess, MainThread) [INFO]: Output structure 05ead8.
+2024-08-22 CDT 13:52:38.302 (MainProcess, MainThread) [INFO]: Structure ff90d9 failed constraints, skipped.
+2024-08-22 CDT 13:52:38.501 (MainProcess, MainThread) [INFO]: Structure b75b01 failed constraints, skipped.
+2024-08-22 CDT 13:52:38.662 (MainProcess, MainThread) [INFO]: Structure f4487e failed constraints, skipped.
+2024-08-22 CDT 13:52:38.825 (MainProcess, MainThread) [INFO]: Structure 80f228 failed constraints, skipped.
+2024-08-22 CDT 13:52:39.045 (MainProcess, MainThread) [INFO]: Structure 76b9dc failed constraints, skipped.
+2024-08-22 CDT 13:52:39.214 (MainProcess, MainThread) [INFO]: Structure 02c0fd failed constraints, skipped.
+2024-08-22 CDT 13:52:39.435 (MainProcess, MainThread) [INFO]: Output structure 6b7246.
+2024-08-22 CDT 13:52:39.653 (MainProcess, MainThread) [INFO]: Structure e805cc failed constraints, skipped.
+2024-08-22 CDT 13:52:39.836 (MainProcess, MainThread) [INFO]: Structure ad887e failed constraints, skipped.
+2024-08-22 CDT 13:52:40.022 (MainProcess, MainThread) [INFO]: Structure 39ae04 failed constraints, skipped.
+2024-08-22 CDT 13:52:40.183 (MainProcess, MainThread) [INFO]: Structure f47832 failed constraints, skipped.
+2024-08-22 CDT 13:52:40.348 (MainProcess, MainThread) [INFO]: Structure 929ed9 failed constraints, skipped.
+2024-08-22 CDT 13:52:40.566 (MainProcess, MainThread) [INFO]: Structure cc981f failed constraints, skipped.
+2024-08-22 CDT 13:52:40.755 (MainProcess, MainThread) [INFO]: Output structure 7d2b5b.
+2024-08-22 CDT 13:52:40.922 (MainProcess, MainThread) [INFO]: Output structure 353b89.
+2024-08-22 CDT 13:52:41.203 (MainProcess, MainThread) [INFO]: Structure 84b0b6 failed constraints, skipped.
+2024-08-22 CDT 13:52:41.367 (MainProcess, MainThread) [INFO]: Structure aed43a failed constraints, skipped.
+2024-08-22 CDT 13:52:41.569 (MainProcess, MainThread) [INFO]: Structure 4a0d68 failed constraints, skipped.
+2024-08-22 CDT 13:52:41.733 (MainProcess, MainThread) [INFO]: Structure f8d22b failed constraints, skipped.
+2024-08-22 CDT 13:52:42.070 (MainProcess, MainThread) [INFO]: Structure e7d670 failed constraints, skipped.
+2024-08-22 CDT 13:52:42.235 (MainProcess, MainThread) [INFO]: Structure 7c9f5c failed constraints, skipped.
+2024-08-22 CDT 13:52:42.397 (MainProcess, MainThread) [INFO]: Structure e74e98 failed constraints, skipped.
+2024-08-22 CDT 13:52:42.579 (MainProcess, MainThread) [INFO]: Structure 6925b4 failed constraints, skipped.
+2024-08-22 CDT 13:52:42.743 (MainProcess, MainThread) [INFO]: Structure 326af4 failed constraints, skipped.
+2024-08-22 CDT 13:52:42.905 (MainProcess, MainThread) [INFO]: Structure 3f7597 failed constraints, skipped.
+2024-08-22 CDT 13:52:43.071 (MainProcess, MainThread) [INFO]: Structure e95fc5 failed constraints, skipped.
+2024-08-22 CDT 13:52:43.234 (MainProcess, MainThread) [INFO]: Structure e6157f failed constraints, skipped.
+2024-08-22 CDT 13:52:43.435 (MainProcess, MainThread) [INFO]: Structure a81736 failed constraints, skipped.
+2024-08-22 CDT 13:52:43.750 (MainProcess, MainThread) [INFO]: Structure 501700 failed constraints, skipped.
+2024-08-22 CDT 13:52:43.916 (MainProcess, MainThread) [INFO]: Output structure 0ee346.
+2024-08-22 CDT 13:52:44.236 (MainProcess, MainThread) [INFO]: Output structure 879cac.
+2024-08-22 CDT 13:52:44.400 (MainProcess, MainThread) [INFO]: Structure fc292c failed constraints, skipped.
+2024-08-22 CDT 13:52:44.569 (MainProcess, MainThread) [INFO]: Structure f7b10e failed constraints, skipped.
+2024-08-22 CDT 13:52:44.732 (MainProcess, MainThread) [INFO]: Structure dad4af failed constraints, skipped.
+2024-08-22 CDT 13:52:45.168 (MainProcess, MainThread) [INFO]: Structure 63b30c failed constraints, skipped.
+2024-08-22 CDT 13:52:45.610 (MainProcess, MainThread) [INFO]: Output structure dc5691.
+2024-08-22 CDT 13:52:45.828 (MainProcess, MainThread) [INFO]: Structure 05398f failed constraints, skipped.
+2024-08-22 CDT 13:52:46.073 (MainProcess, MainThread) [INFO]: Structure 5bd3ae failed constraints, skipped.
+2024-08-22 CDT 13:52:46.318 (MainProcess, MainThread) [INFO]: Output structure 3c1f69.
+2024-08-22 CDT 13:52:46.483 (MainProcess, MainThread) [INFO]: Structure 873aa3 failed constraints, skipped.
+2024-08-22 CDT 13:52:46.708 (MainProcess, MainThread) [INFO]: Structure a73cd2 failed constraints, skipped.
+2024-08-22 CDT 13:52:46.873 (MainProcess, MainThread) [INFO]: Structure 63117d failed constraints, skipped.
+2024-08-22 CDT 13:52:47.036 (MainProcess, MainThread) [INFO]: Structure 8f352c failed constraints, skipped.
+2024-08-22 CDT 13:52:47.197 (MainProcess, MainThread) [INFO]: Structure 0db533 failed constraints, skipped.
+2024-08-22 CDT 13:52:47.360 (MainProcess, MainThread) [INFO]: Structure ff07ff failed constraints, skipped.
+2024-08-22 CDT 13:52:47.521 (MainProcess, MainThread) [INFO]: Structure fc3eba failed constraints, skipped.
+2024-08-22 CDT 13:52:48.012 (MainProcess, MainThread) [INFO]: Structure 430441 failed constraints, skipped.
+2024-08-22 CDT 13:52:48.180 (MainProcess, MainThread) [INFO]: Structure 1e6108 failed constraints, skipped.
+2024-08-22 CDT 13:52:48.381 (MainProcess, MainThread) [INFO]: Structure 1c4ea6 failed constraints, skipped.
+2024-08-22 CDT 13:52:48.545 (MainProcess, MainThread) [INFO]: Structure 462480 failed constraints, skipped.
+2024-08-22 CDT 13:52:48.788 (MainProcess, MainThread) [INFO]: Structure d145ea failed constraints, skipped.
+2024-08-22 CDT 13:52:48.951 (MainProcess, MainThread) [INFO]: Structure 23c0ae failed constraints, skipped.
+2024-08-22 CDT 13:52:49.119 (MainProcess, MainThread) [INFO]: Structure 207dd7 failed constraints, skipped.
+2024-08-22 CDT 13:52:49.318 (MainProcess, MainThread) [INFO]: Structure 5dc3b6 failed constraints, skipped.
+2024-08-22 CDT 13:52:49.484 (MainProcess, MainThread) [INFO]: Structure 1e224e failed constraints, skipped.
+2024-08-22 CDT 13:52:49.651 (MainProcess, MainThread) [INFO]: Structure 97cea2 failed constraints, skipped.
+2024-08-22 CDT 13:52:49.851 (MainProcess, MainThread) [INFO]: Structure 0df861 failed constraints, skipped.
+2024-08-22 CDT 13:52:50.035 (MainProcess, MainThread) [INFO]: Structure c340b8 failed constraints, skipped.
+2024-08-22 CDT 13:52:50.199 (MainProcess, MainThread) [INFO]: Structure 390fa5 failed constraints, skipped.
+2024-08-22 CDT 13:52:50.417 (MainProcess, MainThread) [INFO]: Structure db1c50 failed constraints, skipped.
+2024-08-22 CDT 13:52:50.599 (MainProcess, MainThread) [INFO]: Structure 7fcc1b failed constraints, skipped.
+2024-08-22 CDT 13:52:50.816 (MainProcess, MainThread) [INFO]: Structure 502db0 failed constraints, skipped.
+2024-08-22 CDT 13:52:50.978 (MainProcess, MainThread) [INFO]: Structure cb9bb3 failed constraints, skipped.
+2024-08-22 CDT 13:52:51.163 (MainProcess, MainThread) [INFO]: Structure c1cb34 failed constraints, skipped.
+2024-08-22 CDT 13:52:51.326 (MainProcess, MainThread) [INFO]: Structure 34cc62 failed constraints, skipped.
+2024-08-22 CDT 13:52:51.487 (MainProcess, MainThread) [INFO]: Structure bfbb71 failed constraints, skipped.
+2024-08-22 CDT 13:52:51.669 (MainProcess, MainThread) [INFO]: Structure 8902ab failed constraints, skipped.
+2024-08-22 CDT 13:52:51.832 (MainProcess, MainThread) [INFO]: Structure febc94 failed constraints, skipped.
+2024-08-22 CDT 13:52:52.016 (MainProcess, MainThread) [INFO]: Structure 955abe failed constraints, skipped.
+2024-08-22 CDT 13:52:52.388 (MainProcess, MainThread) [INFO]: Structure b872ed failed constraints, skipped.
+2024-08-22 CDT 13:52:52.551 (MainProcess, MainThread) [INFO]: Structure 4d630b failed constraints, skipped.
+2024-08-22 CDT 13:52:52.731 (MainProcess, MainThread) [INFO]: Structure 541af2 failed constraints, skipped.
+2024-08-22 CDT 13:52:52.894 (MainProcess, MainThread) [INFO]: Structure dbe602 failed constraints, skipped.
+2024-08-22 CDT 13:52:53.058 (MainProcess, MainThread) [INFO]: Structure dd1d61 failed constraints, skipped.
+2024-08-22 CDT 13:52:53.239 (MainProcess, MainThread) [INFO]: Structure 0a0195 failed constraints, skipped.
+2024-08-22 CDT 13:52:53.401 (MainProcess, MainThread) [INFO]: Structure 25d466 failed constraints, skipped.
+2024-08-22 CDT 13:52:53.565 (MainProcess, MainThread) [INFO]: Structure c3e30a failed constraints, skipped.
+2024-08-22 CDT 13:52:53.731 (MainProcess, MainThread) [INFO]: Structure a3b264 failed constraints, skipped.
+2024-08-22 CDT 13:52:53.952 (MainProcess, MainThread) [INFO]: Structure ffaf2a failed constraints, skipped.
+2024-08-22 CDT 13:52:54.117 (MainProcess, MainThread) [INFO]: Structure 6f7822 failed constraints, skipped.
+2024-08-22 CDT 13:52:54.282 (MainProcess, MainThread) [INFO]: Structure 3aa698 failed constraints, skipped.
+2024-08-22 CDT 13:52:54.444 (MainProcess, MainThread) [INFO]: Structure dbb9a0 failed constraints, skipped.
+2024-08-22 CDT 13:52:54.606 (MainProcess, MainThread) [INFO]: Structure b2eaba failed constraints, skipped.
+2024-08-22 CDT 13:52:54.787 (MainProcess, MainThread) [INFO]: Structure 519763 failed constraints, skipped.
+2024-08-22 CDT 13:52:55.091 (MainProcess, MainThread) [INFO]: Structure fc62fb failed constraints, skipped.
+2024-08-22 CDT 13:52:55.254 (MainProcess, MainThread) [INFO]: Structure cebb06 failed constraints, skipped.
+2024-08-22 CDT 13:52:55.504 (MainProcess, MainThread) [INFO]: Structure 424905 failed constraints, skipped.
+2024-08-22 CDT 13:52:55.818 (MainProcess, MainThread) [INFO]: Structure 450ce1 failed constraints, skipped.
+2024-08-22 CDT 13:52:56.140 (MainProcess, MainThread) [INFO]: Output structure d539d6.
+2024-08-22 CDT 13:52:56.387 (MainProcess, MainThread) [INFO]: Structure f53649 failed constraints, skipped.
+2024-08-22 CDT 13:52:56.606 (MainProcess, MainThread) [INFO]: Structure 3cc11d failed constraints, skipped.
+2024-08-22 CDT 13:52:56.800 (MainProcess, MainThread) [INFO]: Structure 6d1246 failed constraints, skipped.
+2024-08-22 CDT 13:52:56.965 (MainProcess, MainThread) [INFO]: Structure 47c914 failed constraints, skipped.
+2024-08-22 CDT 13:52:57.147 (MainProcess, MainThread) [INFO]: Structure e74d7a failed constraints, skipped.
+2024-08-22 CDT 13:52:57.310 (MainProcess, MainThread) [INFO]: Structure 73f9be failed constraints, skipped.
+2024-08-22 CDT 13:52:57.520 (MainProcess, MainThread) [INFO]: Structure 419bd1 failed constraints, skipped.
+2024-08-22 CDT 13:52:57.725 (MainProcess, MainThread) [INFO]: Structure 56c415 failed constraints, skipped.
+2024-08-22 CDT 13:52:57.888 (MainProcess, MainThread) [INFO]: Structure 5eaa27 failed constraints, skipped.
+2024-08-22 CDT 13:52:58.056 (MainProcess, MainThread) [INFO]: Structure 57327b failed constraints, skipped.
+2024-08-22 CDT 13:52:58.311 (MainProcess, MainThread) [INFO]: Structure 34715e failed constraints, skipped.
+2024-08-22 CDT 13:52:58.471 (MainProcess, MainThread) [INFO]: Structure e02640 failed constraints, skipped.
+2024-08-22 CDT 13:52:58.632 (MainProcess, MainThread) [INFO]: Structure 318b4d failed constraints, skipped.
+2024-08-22 CDT 13:52:58.831 (MainProcess, MainThread) [INFO]: Structure 4a7714 failed constraints, skipped.
+2024-08-22 CDT 13:52:58.991 (MainProcess, MainThread) [INFO]: Structure be9136 failed constraints, skipped.
+2024-08-22 CDT 13:52:59.194 (MainProcess, MainThread) [INFO]: Structure 995d68 failed constraints, skipped.
+2024-08-22 CDT 13:52:59.374 (MainProcess, MainThread) [INFO]: Structure 3964fc failed constraints, skipped.
+2024-08-22 CDT 13:52:59.556 (MainProcess, MainThread) [INFO]: Structure e35659 failed constraints, skipped.
+2024-08-22 CDT 13:52:59.755 (MainProcess, MainThread) [INFO]: Structure 921adb failed constraints, skipped.
+2024-08-22 CDT 13:52:59.917 (MainProcess, MainThread) [INFO]: Structure 8db101 failed constraints, skipped.
+2024-08-22 CDT 13:53:00.115 (MainProcess, MainThread) [INFO]: Structure f2371d failed constraints, skipped.
+2024-08-22 CDT 13:53:00.277 (MainProcess, MainThread) [INFO]: Structure 0a4f02 failed constraints, skipped.
+2024-08-22 CDT 13:53:00.440 (MainProcess, MainThread) [INFO]: Structure 214813 failed constraints, skipped.
+2024-08-22 CDT 13:53:00.656 (MainProcess, MainThread) [INFO]: Structure f2b247 failed constraints, skipped.
+2024-08-22 CDT 13:53:00.837 (MainProcess, MainThread) [INFO]: Structure 18d733 failed constraints, skipped.
+2024-08-22 CDT 13:53:01.018 (MainProcess, MainThread) [INFO]: Structure bfb606 failed constraints, skipped.
+2024-08-22 CDT 13:53:01.179 (MainProcess, MainThread) [INFO]: Structure c894e5 failed constraints, skipped.
+2024-08-22 CDT 13:53:01.339 (MainProcess, MainThread) [INFO]: Structure 44ce5f failed constraints, skipped.
+2024-08-22 CDT 13:53:01.703 (MainProcess, MainThread) [INFO]: Structure 2e9f37 failed constraints, skipped.
+2024-08-22 CDT 13:53:01.932 (MainProcess, MainThread) [INFO]: Structure 43ce56 failed constraints, skipped.
+2024-08-22 CDT 13:53:02.146 (MainProcess, MainThread) [INFO]: Structure 319def failed constraints, skipped.
+2024-08-22 CDT 13:53:02.362 (MainProcess, MainThread) [INFO]: Structure 8d7f73 failed constraints, skipped.
+2024-08-22 CDT 13:53:02.527 (MainProcess, MainThread) [INFO]: Structure 157ed8 failed constraints, skipped.
+2024-08-22 CDT 13:53:02.685 (MainProcess, MainThread) [INFO]: Structure 083559 failed constraints, skipped.
+2024-08-22 CDT 13:53:02.845 (MainProcess, MainThread) [INFO]: Structure c0de6f failed constraints, skipped.
+2024-08-22 CDT 13:53:03.004 (MainProcess, MainThread) [INFO]: Structure 0e83eb failed constraints, skipped.
+2024-08-22 CDT 13:53:03.185 (MainProcess, MainThread) [INFO]: Structure b277b7 failed constraints, skipped.
+2024-08-22 CDT 13:53:03.344 (MainProcess, MainThread) [INFO]: Structure b84206 failed constraints, skipped.
+2024-08-22 CDT 13:53:03.611 (MainProcess, MainThread) [INFO]: Structure c12df9 failed constraints, skipped.
+2024-08-22 CDT 13:53:03.778 (MainProcess, MainThread) [INFO]: Output structure 6445fa.
+2024-08-22 CDT 13:53:03.995 (MainProcess, MainThread) [INFO]: Structure a61344 failed constraints, skipped.
+2024-08-22 CDT 13:53:04.177 (MainProcess, MainThread) [INFO]: Structure 7f9332 failed constraints, skipped.
+2024-08-22 CDT 13:53:04.355 (MainProcess, MainThread) [INFO]: Structure 56f676 failed constraints, skipped.
+2024-08-22 CDT 13:53:04.515 (MainProcess, MainThread) [INFO]: Structure 655a18 failed constraints, skipped.
+2024-08-22 CDT 13:53:04.676 (MainProcess, MainThread) [INFO]: Structure acc9be failed constraints, skipped.
+2024-08-22 CDT 13:53:04.837 (MainProcess, MainThread) [INFO]: Structure 8dfe2d failed constraints, skipped.
+2024-08-22 CDT 13:53:05.059 (MainProcess, MainThread) [INFO]: Structure eb8c81 failed constraints, skipped.
