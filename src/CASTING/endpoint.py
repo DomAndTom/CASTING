@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 import shutil
 from pathlib import Path
 
@@ -7,6 +8,7 @@ import yaml
 from fastapi.templating import Jinja2Templates
 
 from . import rootdir, rootname
+from .jwt_handler import create_access_token, decode_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 
 api = fl.FastAPI()
 
@@ -24,6 +26,23 @@ async def favicon():
         path=rootdir / "static/favicon.ico",
         headers={"Content-Disposition": "attachment; filename=favicon.ico"},
     )
+
+
+@api.get("/create-anonymous-session")
+def create_anonymous_session(response: fl.Response):
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(data={"user": "anonymous"}, expires_delta=access_token_expires)
+
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        expires=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        secure=False,
+        samesite="Lax"
+    )
+    return {"message": "Anonymous session created", "access_token": access_token}
 
 
 @api.get("/inputs/")

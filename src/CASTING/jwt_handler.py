@@ -1,9 +1,15 @@
+
 import jwt
+import os
+from jose import JWTError, jwt, ExpiredSignatureError
+from dotenv import load_dotenv
 from datetime import datetime, timedelta
 
-SECRET_KEY = "your_secret_key_here"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30  
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
@@ -19,7 +25,7 @@ def decode_access_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except jwt.ExpiredSignatureError:
+    except ExpiredSignatureError:
         return None
-    except jwt.JWTError:
+    except JWTError:
         return None
