@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 import shutil
 from pathlib import Path
 
@@ -7,6 +8,7 @@ import yaml
 from fastapi.templating import Jinja2Templates
 
 from . import rootdir, rootname
+from .jwt_handler import create_access_token, decode_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
 
 api = fl.FastAPI()
 
@@ -26,8 +28,30 @@ async def favicon():
     )
 
 
+@api.get("/create-anonymous-session")
+def create_anonymous_session(response: fl.Response):
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(data={"user": "anonymous"}, expires_delta=access_token_expires)
+
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        expires=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        secure=False,
+        samesite="Lax"
+    )
+    return {"message": "Anonymous session created", "access_token": access_token}
+
+
 @api.get("/inputs/")
-def query_inputs(query: str = ''):
+def query_inputs(request: fl.Request, query: str = ''):
+
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
+
     out = yaml.safe_load(open(rootdir / 'inputs_def.yml'))
     available = list(out.keys())
 
@@ -63,12 +87,18 @@ def query_inputs(query: str = ''):
 
 @api.post("/file/{jobID}")
 def upload_file(
+    request: fl.Request,
     jobID: str,
     file: fl.UploadFile = fl.File(...),
 ):
-    filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
+    
+    filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / 'docs' / jobID 
     filedir.mkdir(parents=True, exist_ok=True)
     fpath = filedir / file.filename
+
     if fpath.exists():
         return {"message": f"FileUploadError: File '{fpath}' exists."}
     try:
@@ -83,6 +113,9 @@ def upload_file(
 
 @api.get("/file/{jobID}")
 def list_files(request: fl.Request, jobID: str):
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
     filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
     files = [fpath.name for fpath in filedir.glob('*.*')]
     var = {"request": request, "jobID": jobID, "files": files}
@@ -90,7 +123,10 @@ def list_files(request: fl.Request, jobID: str):
 
 
 @api.get("/file/{jobID}/{filename}")
-def download_file(jobID: str, filename: str):
+def download_file(request: fl.Request, jobID: str, filename: str):
+    token = request.cookies.get("access_token")
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
     filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
     fpath = filedir / filename
     if not fpath.exists():
