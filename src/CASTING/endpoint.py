@@ -46,7 +46,12 @@ def create_anonymous_session(response: fl.Response):
 
 
 @api.get("/inputs/")
-def query_inputs(query: str = ''):
+def query_inputs(request: fl.Request, query: str = ''):
+
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
+
     out = yaml.safe_load(open(rootdir / 'inputs_def.yml'))
     available = list(out.keys())
 
@@ -82,12 +87,18 @@ def query_inputs(query: str = ''):
 
 @api.post("/file/{jobID}")
 def upload_file(
+    request: fl.Request,
     jobID: str,
     file: fl.UploadFile = fl.File(...),
 ):
-    filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
+    
+    filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / 'docs' / jobID 
     filedir.mkdir(parents=True, exist_ok=True)
     fpath = filedir / file.filename
+
     if fpath.exists():
         return {"message": f"FileUploadError: File '{fpath}' exists."}
     try:
@@ -102,6 +113,9 @@ def upload_file(
 
 @api.get("/file/{jobID}")
 def list_files(request: fl.Request, jobID: str):
+    token = request.cookies.get("access_token") 
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
     filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
     files = [fpath.name for fpath in filedir.glob('*.*')]
     var = {"request": request, "jobID": jobID, "files": files}
@@ -109,7 +123,10 @@ def list_files(request: fl.Request, jobID: str):
 
 
 @api.get("/file/{jobID}/{filename}")
-def download_file(jobID: str, filename: str):
+def download_file(request: fl.Request, jobID: str, filename: str):
+    token = request.cookies.get("access_token")
+    if not token:
+        raise fl.HTTPException(status_code=401, detail="Not authenticated")
     filedir = Path(os.environ.get(f'{rootname}_DIR', '')) / jobID
     fpath = filedir / filename
     if not fpath.exists():
